@@ -1,5 +1,9 @@
 #content {
     width: 100%;
     height: 100%;
-    background-color: #bbbbbb;
+}
+
+.square {
+    border: 1px solid #777777;
+    float: left;
 }

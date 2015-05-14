@@ -58,6 +58,8 @@ of the arrow. Visualize an algorithm that determines if the checker moves off th
 
   - Include UI controls to play, stop, and reset the game.
   - Include UI controls to change the size of the board and to shuffle the arrows.
+  - Include audio to make things more interesting.
+  - Add some style to make it look good.
   
 The skeleton project is set up to use a front end framework called [React](https://facebook.github.io/react/). React is pretty easy to learn, so definitely read the documentation. The skeleton project has one example of each important aspect of React. So please be sure to study the comments and the code.
 The UI is setup using [react-bootstrap](http://react-bootstrap.github.io/components.html). React-bootstrap has

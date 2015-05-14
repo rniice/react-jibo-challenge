@@ -65,6 +65,14 @@ common UI elements such as buttons, and inputs so should help speed up developme
 
 Using react and react-bootstrap isn't required, but I believe it can really help speed development.
 
+# Some important notes
+
+Use the file extension `.jsx` for all your javascript files. The project is automagically setup to recognize that extension and transpile the JSX (used with React) and ES6 syntax to regular ES5 at runtime.
+
+The entry point to the application is `index.html`, which in turn points immediately to `lib/main.jsx`. Do not modify `main.js`, which is just a bootstrap to get electron running.
+
+Use whatever libraries you want from the npm public repository. Again you can find them [here](https://www.npmjs.com/) and install them with `npm install cool-lib-i-found --save`. 
+
 # Submitting
 
 Zip and email, fork and provide your own repo either public or private. Doens't matter.

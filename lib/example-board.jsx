@@ -13,11 +13,11 @@ export default React.createClass({
 
         //create a new array of squares
         let squares = [];
-        let count = 0;
+        let key = 0;
         for(let i = 0; i < this.props.size; i++) {
             for(let j = 0; j < this.props.size; j++) {
-                let color = count++ % 2 == 0 ? '#333333' : '#BBBBBB';
-                squares.push(<Square size={this.props.squareSize} color={color} />)
+                let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
+                squares.push(<Square key={key} size={this.props.squareSize} color={color} />)
             }
         }
         let size = (this.props.squareSize + 2) * this.props.size;

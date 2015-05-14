@@ -6,8 +6,7 @@ import Controls from './example-controls';
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
 
-//Lets create a board using React. We use the fat arrow function syntax to get a callback
-//for when our react component is rendered.
+//This is a React class. It's main methods are 'getInitialState', and 'render'.
 let Main = React.createClass({
 
     getInitialState() {
@@ -40,13 +39,14 @@ let Main = React.createClass({
         //we update our internal state.
         this.state.size = 7;
         //setting our state forces a rerender, which in turn will call the render() method
-        //of this class
+        //of this class. This is how everything gets redrawn and how you 'react' to user input
+        //to change the state of the DOM.
         this.setState(this.state);
     }
 });
 
 //this is the entry point into react. From here on out we deal almost exclusively with the
 //virtual DOM. Here we tell React to attach everything to the content DOM element.
-React.render(<Main squareSize={100} size={5}/>, content, () => {
+React.render(<Main squareSize={80} size={5}/>, content, () => {
     console.log("Rendered!");
 });

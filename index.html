@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            //We want to wait for the DOM content to load before starting our app
+            window.onload = function() {
+                //this allows us to use ECMAScript6 in our project. It will automatically
+                //transpile any file with the extension '.jsx' that is loaded through 'require'.
+                require('babel/register');
+                //to load a module that is not an external dependency, you must provide a relative
+                //path syntax, so either './path/to/my/file' or '../path/to/file', etc. Do not
+                //include the file extension.
+                require('./lib/main');
+            };
+        </script>
+        <div id="content">
+            <p id="text">Hello 1</p>
+        </div>
+    </body>
+</html>

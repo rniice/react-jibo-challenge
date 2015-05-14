@@ -59,9 +59,9 @@ of the arrow. Visualize an algorithm that determines if the checker moves off th
   - Include UI controls to play, stop, and reset the game.
   - Include UI controls to change the size of the board and to shuffle the arrows.
   
-The skeleton project is set up to use a front end framework called [React](https://facebook.github.io/react/). 
+The skeleton project is set up to use a front end framework called [React](https://facebook.github.io/react/). React is pretty easy to learn, so definitely read the documentation. The skeleton project has one example of each important aspect of React. So please be sure to study the comments and the code.
 The UI is setup using [react-bootstrap](http://react-bootstrap.github.io/components.html). React-bootstrap has
-common UI elements such as buttons, and inputs.
+common UI elements such as buttons, and inputs so should help speed up development.
 
 Using react and react-bootstrap isn't required, but I believe it can really help speed development.
 

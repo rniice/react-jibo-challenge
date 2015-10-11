@@ -16,8 +16,8 @@ Install [io.js](https://iojs.org/en/index.html) on your system.
   [`package.json`](https://github.com/golgobot/programming-challenge/blob/master/package.json).
   
   - In your code you can load a library module one of two ways
-    1. `var $ = require('lodash');` This is the ECMAScript 5 notation.
-    1. `import $ from 'lodash';` This is the ECMAScript 6 notation.
+    1. `var $ = require('jquery');` This is the ECMAScript 5 notation.
+    1. `import $ from 'jquery';` This is the ECMAScript 6 notation.
 
 # Installing dependencies
 
@@ -40,7 +40,7 @@ Go to the project root and run `electron .`
 
 ## Method 2
 
-Go to the prject root and run `iojs bin/launch.js`.
+Go to the project root and run `iojs bin/launch.js`.
 
 # Debugging
 
@@ -77,4 +77,4 @@ Use whatever libraries you want from the npm public repository. Again you can fi
 
 # Submitting
 
-Zip and email, fork and provide your own repo either public or private. Doens't matter.
+Zip and email, fork and provide your own repo either public or private. Doesn't matter.

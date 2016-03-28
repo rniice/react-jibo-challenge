@@ -16,8 +16,8 @@ Install [io.js](https://iojs.org/en/index.html) on your system.
   [`package.json`](https://github.com/golgobot/programming-challenge/blob/master/package.json).
   
   - In your code you can load a library module one of two ways
-    1. `var $ = require('jquery');` This is the ECMAScript 5 notation.
-    1. `import $ from 'jquery';` This is the ECMAScript 6 notation.
+    1. `var $ = require('lodash');` This is the ECMAScript 5 notation.
+    1. `import $ from 'lodash';` This is the ECMAScript 6 notation.
 
 # Installing dependencies
 
@@ -40,12 +40,12 @@ Go to the project root and run `electron .`
 
 ## Method 2
 
-Go to the project root and run `iojs bin/launch.js`.
+Go to the prject root and run `iojs bin/launch.js`.
 
 # Debugging
 
 Since Electron is built on Chrome, you get to use Chrome's devTools. Dev tools allows you to inspect DOM elements, 
-read `console.log` output, set breakpoints, and everything else you'd except from a debugger. To open the dev tools
+read `console.log` output, set breakpoints, and everything else you'd expect from a debugger. To open the dev tools
 go to `View -> Toggle DevTools`.
 
 If you make a change and want to reload the application go to `View -> Reload`.

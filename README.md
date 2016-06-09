@@ -1,17 +1,17 @@
 # Prerequisites
-Install [io.js](https://iojs.org/en/index.html) on your system.
+Install [node.js](https://nodejs.org) on your system.
 
-# io.js and npm
+# node.js and npm
 
-`io.js` is a JavaScript application runtime that allows you to run JavaScript in a desktop or server environment.
-`io.js` includes a package manager called [`npm`](https://www.npmjs.com/). The `npm` 
+`node.js` is a JavaScript application runtime that allows you to run JavaScript in a desktop or server environment.
+`node.js` includes a package manager called [`npm`](https://www.npmjs.com/). The `npm`
 [documentation](https://docs.npmjs.com/) is a good resource, but here's the cheat sheet for this project.
 
   - You can search for libraries you want to use [here](https://www.npmjs.com/) (or use our benevolent overlord
   [Google](http://google.com)).
   
-  - Once you know you want to use a library, say it's `jquery`, go to the root of the project and run 
-  `npm install jquery --save`. This will download the jquery library from the npm public repository and place
+  - Once you know you want to use a library, say it's `lodash`, go to the root of the project and run
+  `npm install lodash --save`. This will download the lodash library from the npm public repository and place
   it in a folder called `node_modules` in your project root. It will also update your dependency list in 
   [`package.json`](https://github.com/golgobot/programming-challenge/blob/master/package.json).
   
@@ -27,7 +27,7 @@ all the dependencies listed in
 
 # Running using Electron
 
-This project's runtime is [Electron](http://electron.atom.io/). Electron is sort of like Chrome and io.js combined 
+This project's runtime is [Electron](http://electron.atom.io/). Electron is sort of like Chrome and node.js combined
 into one runtime. It allows developers to create desktop applications using web technologies.
 
 ## Method 1
@@ -40,7 +40,7 @@ Go to the project root and run `electron .`
 
 ## Method 2
 
-Go to the prject root and run `iojs bin/launch.js`.
+Go to the project root and run `electron bin/launch.js`.
 
 # Debugging
 
@@ -65,7 +65,7 @@ The skeleton project is set up to use a front end framework called [React](https
 The UI is setup using [react-bootstrap](http://react-bootstrap.github.io/components.html). React-bootstrap has
 common UI elements such as buttons, and inputs so should help speed up development.
 
-Using react and react-bootstrap isn't required, but I believe it can really help speed development.
+Using react and react-bootstrap isn't required, but it can really help speed development.
 
 # Some important notes
 
@@ -77,4 +77,4 @@ Use whatever libraries you want from the npm public repository. Again you can fi
 
 # Submitting
 
-Zip and email, fork and provide your own repo either public or private. Doesn't matter.
+Create a github repo for your solution and submit this repo.

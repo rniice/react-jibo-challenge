@@ -1,6 +1,6 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
-var Menu = require('menu');
+var app = require('electron').app;
+var BrowserWindow = require('electron').BrowserWindow;
+var Menu =  require('electron').Menu;
 var mainWindow = null;
 var path = require('path');
 
@@ -49,7 +49,7 @@ app.on('ready', function () {
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
     mainWindow = new BrowserWindow({width: 1280, height: 720, resizable: true, title: 'Jibo Programming Challenge'});
-    mainWindow.loadUrl('file://' + __dirname + '/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
     mainWindow.on('closed', function () {
         mainWindow = null;
     });

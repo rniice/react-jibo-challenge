@@ -54,10 +54,11 @@ If you make a change and want to reload the application go to `View -> Reload`.
 
 Consider a checkerboard of unknown size. On each square is an arrow that randomly points either up, down, 
 left, or right. A checker is placed on a random square. Each turn the checker moves one square in the direction 
-of the arrow. Visualize an algorithm that determines if the checker moves off the edge of the board.
+of the arrow. Visualize 1) an algorithm that determines if the checker moves off the edge of the board and 2) an algorithm that determines when the checker enters a cycle.
 
   - Include UI controls to play, stop, and reset the game.
   - Include UI controls to change the size of the board and to shuffle the arrows.
+  - Include UI indicators for the checker 1) moving off the board and 2) entering a cycle
   - Include audio to make things more interesting.
   - Add some style to make it look good.
   
@@ -71,9 +72,11 @@ Using react and react-bootstrap isn't required, but it can really help speed dev
 
 Use the file extension `.jsx` for all your javascript files. The project is automagically setup to recognize that extension and transpile the JSX (used with React) and ES6 syntax to regular ES5 at runtime.
 
-The entry point to the application is `index.html`, which in turn points immediately to `lib/main.jsx`. Do not modify `main.js`, which is just a bootstrap to get electron running.
+The entry point to the application is `index.html`, which in turn points immediately to `lib/main.jsx`. **Do not modify `index.html` or `main.js`**, which is just a bootstrap to get electron running.
 
-Use whatever libraries you want from the npm public repository. Again you can find them [here](https://www.npmjs.com/) and install them with `npm install cool-lib-i-found --save`. 
+Use whatever libraries you want from the npm public repository. Again you can find them [here](https://www.npmjs.com/) and install them with `npm install cool-lib-i-found --save`. However, for the purpose of this challenge, less is more so try to use the minimal set of node modules.
+
+There is an optimal algorithm for determining when the checker is in a cycle. Feel free to google it.
 
 # Submitting
 

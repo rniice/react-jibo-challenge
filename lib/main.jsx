@@ -1,7 +1,7 @@
 //all import statements must go at the top of the file.
 import React from 'react';
-import Board from './example-board';
-import Controls from './example-controls';
+import Board from './board';
+import Controls from './controls';
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');

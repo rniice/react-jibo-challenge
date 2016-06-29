@@ -1,4 +1,4 @@
-make each checker an object
+dromake each checker an object
 
 -this._currentPosition
 -this._nextPosition

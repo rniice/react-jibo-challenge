@@ -20,11 +20,10 @@ export default React.createClass({
         //this.props are injected by the entity that instantiated
         //this react class.
         let style = {
-            /*width: this.props.size,
-            height: this.props.size,
-            backgroundImage: this.props.direction.img_path,
-            backgroundColor: this.props.color,
-            resizeMode: "stretch"*/
+            width: this.props.checkerSize,
+            height: this.props.checkerSize
+            //backgroundImage: this.props.direction.img_path,
+            //backgroundColor: this.props.color,
         };
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.

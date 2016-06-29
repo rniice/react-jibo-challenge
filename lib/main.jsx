@@ -7,6 +7,10 @@ import Checker from './checker'     //load local class
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
 
+let refresh_interval = null;
+let refresh_rate     = 2000;    //2 sec
+
+
 //This is a React class. It's main methods are 'getInitialState', and 'render'.
 let Main = React.createClass({
 
@@ -18,21 +22,36 @@ let Main = React.createClass({
     },
 
     play() {
-        Board.updateBoardState();
-        console.log("Play");
+        //Board.updateBoardState();
+        console.log("Play");     
+        let that = this;
+        if(!refresh_interval){
+            refresh_interval = setInterval(function() {
+                that.updateRender();
+            }, refresh_rate);            
+        } else{
+            console.log("already playing");
+        }
     },
 
     stop() {
         console.log("Stop");
+        clearInterval(refresh_interval);
+        refresh_interval = null;
     },
 
     reset() {
+        console.log("Reset");
+        this.stop();
         var initial_state = this.getInitialState();
         this.setSize(initial_state);
-        console.log("Reset");
     },
 
     setSize(args) {
+        //first, make sure we clear any running program
+        clearInterval(refresh_interval);
+        refresh_interval = null;
+
         //we update our internal state.
         if(args) {
             this.state.size = args.size;
@@ -51,12 +70,17 @@ let Main = React.createClass({
         this.setState(this.state);
     },
 
+    updateRender() {
+        console.log("updating render");
+
+    },
+
     render() {
         var react_element = (
             <div>
                 <Controls control={this}/>
                 <Board size={this.state.size} squareSize={this.state.squareSize}/>
-                <Checker size={this.state.size} checkerSize={this.state.checkerSize}/>
+                //<Checker size={this.state.size} checkerSize={this.state.checkerSize}/>
             </div>);
         return react_element;
     }
@@ -66,6 +90,6 @@ let Main = React.createClass({
 
 //this is the entry point into react. From here on out we deal almost exclusively with the
 //virtual DOM. Here we tell React to attach everything to the content DOM element.
-React.render(<Main squareSize={80} size={5}/>, content, () => {
+React.render(<Main squareSize={80} checkerSize={30} size={5}/>, content, () => {
     console.log("Rendered!");
 });

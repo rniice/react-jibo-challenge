@@ -1,0 +1,51 @@
+make each checker an object
+
+-this._currentPosition
+-this._nextPosition
+-this._color
+-this._emitSound
+
+-this._positionHistory = { 1:[0,2], 2:[0,3], etc.. }
+
+-this._offboard = true/false
+-this._cycle = true/false
+
+
+algorithms:
+1/when off the table
+
+this._currentPosition > N or < 0 
+
+
+2/when in a cycle
+
+//use underscore or something, 
+
+when any entry in this._positionHistory repeats, that means a cycle 
+
+is entered
+
+-have this._color update to something cool/flashing/etc
+
+
+//make a falling sound when checker falls of
+
+
+//make the mario bros yellow star sound when a checker gets into a 
+
+cycle
+
+
+///how to deal with checkers piling up if multiple get on track?
+
+
+
+board/ will need to have a refresh function that calls each checker 
+
+to updatePosition() and then updateStatus() which checks against 
+
+algorithms 1 and 2
+
+
+-deploy it as a gh-pages branch behind michael-crockett.com/
+

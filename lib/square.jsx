@@ -25,11 +25,8 @@ export default React.createClass({
         let style = {
             width: this.props.size,
             height: this.props.size,
-            //direction: this.props.direction,
-            //backgroundImage: url('../resources/up.png'),
-            backgroundImage: `url("${'./resources/up.png'}")`,
-            //backgroundImage: url('../resources/up.png')
-            //backgroundColor: this.props.color
+            backgroundImage: this.props.direction.img_path,
+            backgroundColor: this.props.color
         };
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.

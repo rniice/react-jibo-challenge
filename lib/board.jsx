@@ -17,13 +17,20 @@ export default React.createClass({
         let max = 4;
         let temp_rand = Math.floor(Math.random() * (max - min)) + min;
 
-        switch(temp_rand) {
-            case 0:     result = {name: 'right', shift: [1,0]};    //right arrow
-            case 1:     result = {name: 'up', shift: [0,1]};       //up arrow            
-            case 2:     result = {name: 'left', shift: [-1,0]};    //left arrow
-            default:    result = {name: 'down', shift: [0,-1]};    //down arrow
+        if (temp_rand == 0) {
+            result = {name: 'right', img_path: `url("${'./resources/right.png'}")`, shift: [1,0]};    //right arrow
+        } 
+        else if (temp_rand == 1) {
+            result = {name: 'up', img_path: `url("${'./resources/up.png'}")`, shift: [0,1]};       //up arrow            
+        }        
+        else if (temp_rand == 2) {
+            result = {name: 'left', img_path: `url("${'./resources/left.png'}")`, shift: [-1,0]};    //left arrow
+        }
+        else {
+            result = {name: 'down', img_path: `url("${'./resources/down.png'}")`, shift: [0,-1]};    //down arrow
         }
 
+        //console.log(result);
         return result;
     },
 

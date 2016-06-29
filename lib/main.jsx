@@ -16,13 +16,6 @@ let Main = React.createClass({
         };
     },
 
-    render() {
-        return <div>
-            <Controls control={this}/>
-            <Board size={this.state.size} squareSize={this.state.squareSize}/>
-        </div>;
-    },
-
     play() {
         console.log("Play");
     },
@@ -32,17 +25,36 @@ let Main = React.createClass({
     },
 
     reset() {
+        var initial_state = this.getInitialState();
+        this.setSize(initial_state);
         console.log("Reset");
     },
 
-    setSize() {
+    setSize(args) {
         //we update our internal state.
-        this.state.size = 7;
+        if(args) {
+            this.state.size = args.size;
+            this.state.squareSize = args.squareSize;
+        }
+        else if(this.state.size <= 20){
+            this.state.size+=2;
+            this.state.squareSize -=4;
+        } else {
+            this.state.size = 5;
+            this.state.squareSize = 80;
+        }
         //setting our state forces a rerender, which in turn will call the render() method
         //of this class. This is how everything gets redrawn and how you 'react' to user input
         //to change the state of the DOM.
         this.setState(this.state);
+    },
+
+    render() {
+        var react_element = (<div><Controls control={this}/><Board size={this.state.size} squareSize={this.state.squareSize}/></div>);
+        return react_element;
     }
+
+
 });
 
 //this is the entry point into react. From here on out we deal almost exclusively with the

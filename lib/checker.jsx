@@ -20,15 +20,15 @@ export default React.createClass({
         //this.props are injected by the entity that instantiated
         //this react class.
         let style = {
-            width: this.props.size,
+            /*width: this.props.size,
             height: this.props.size,
             backgroundImage: this.props.direction.img_path,
             backgroundColor: this.props.color,
-            resizeMode: "stretch"
+            resizeMode: "stretch"*/
         };
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
-        return <div className='square' ref='square' style={style}/>
+        return <div className='checker' ref='checker' style={style}/>
     },
 
     /**
@@ -38,7 +38,7 @@ export default React.createClass({
      */
     componentDidMount() {
         //square is a reference to a DOMElement.
-        let square = React.findDOMNode(this.refs.square);
-        console.log("square added");
+        let checker = React.findDOMNode(this.refs.checker);
+        console.log("checker added");
     }
 });

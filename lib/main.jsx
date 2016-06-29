@@ -2,6 +2,7 @@
 import React from 'react';
 import Board from './board';
 import Controls from './controls';
+import Checker from './checker'     //load local class
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
@@ -17,6 +18,7 @@ let Main = React.createClass({
     },
 
     play() {
+        Board.updateBoardState();
         console.log("Play");
     },
 
@@ -50,7 +52,12 @@ let Main = React.createClass({
     },
 
     render() {
-        var react_element = (<div><Controls control={this}/><Board size={this.state.size} squareSize={this.state.squareSize}/></div>);
+        var react_element = (
+            <div>
+                <Controls control={this}/>
+                <Board size={this.state.size} squareSize={this.state.squareSize}/>
+                <Checker size={this.state.size} checkerSize={this.state.checkerSize}/>
+            </div>);
         return react_element;
     }
 

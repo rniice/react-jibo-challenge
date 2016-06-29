@@ -1,7 +1,6 @@
 import React from 'react';
-import Square from './square'   //load local class
-
-
+import Square from './square';      //load local class
+import Checker from './checker';    //load local class
 
 export default React.createClass({
     getInitialState() {
@@ -34,6 +33,11 @@ export default React.createClass({
         return result;
     },
 
+    updateBoardState() {
+        console.log("updating board state");
+
+    },
+
     render() {
         //this example just creates a row of squares. Use CSS styling to
         //get the checkers into a mxm size board
@@ -50,13 +54,30 @@ export default React.createClass({
                 squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} />)
             }
         }
+        
+        //create a new array of checkers
+        let checkers = [];
+        //let key = 0;
+        for(let i = 0; i < this.props.size; i++) {
+            for(let j = 0; j < this.props.size; j++) {
+                let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
+                let direction = this.getSquareDirection();
+
+                //checkers.push(<Checker key={key} size={this.props.squareSize} color={color} direction={direction} />)
+                checkers.push(<Checker key={key} size={this.props.squareSize} color={color} direction={direction} />)
+            }
+        }
+
         let size = (this.props.squareSize + 2) * this.props.size;
         let style = {
             width: size,
             height: size
         };
+
+
         return <div style={style}>
             {squares}
+            {checkers}
         </div>;
     }
 });

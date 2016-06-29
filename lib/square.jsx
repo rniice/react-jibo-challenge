@@ -26,7 +26,9 @@ export default React.createClass({
             width: this.props.size,
             height: this.props.size,
             backgroundImage: this.props.direction.img_path,
-            backgroundColor: this.props.color
+            backgroundColor: this.props.color,
+            flex: 1,
+            resizeMode: "stretch"
         };
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.

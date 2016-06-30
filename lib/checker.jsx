@@ -27,7 +27,12 @@ export default React.createClass({
         };
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
-        return <div className='checker' ref='checker' style={style}/>
+        
+        var react_element = (
+            <p className='checker' ref='checker' style={style}>STUFF
+            </p>);
+
+        return react_element;
     },
 
     /**
@@ -38,6 +43,16 @@ export default React.createClass({
     componentDidMount() {
         //square is a reference to a DOMElement.
         let checker = React.findDOMNode(this.refs.checker);
+        //checker.append("<h2>Yeah!</h2>");
         console.log("checker added");
+    },
+    
+    componentDidUpdate() {
+        //square is a reference to a DOMElement.
+        //let checker = React.findDOMNode(this.refs.checker);
+        //checker.append("<h2>Yeah!</h2>");
+        console.log("checker updated");
     }
+
+
 });

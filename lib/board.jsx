@@ -52,9 +52,9 @@ export default React.createClass({
                 let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                 let direction = this.getSquareDirection();
                 //console.log(direction);
-
-                squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} />);
-                checkers.push(<Checker key={key} size={this.props.checkerSize} color={color} />);
+                
+                squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction}></Square>); 
+                checkers.push(<Checker key={key} size={this.props.checkerSize} color={color}></Checker>);
             }
         }
 
@@ -66,7 +66,7 @@ export default React.createClass({
 
 
         return <div style={style}>
-            {squares},
+            {squares}
             {checkers}
         </div>;
     }

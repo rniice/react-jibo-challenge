@@ -34,6 +34,7 @@ export default React.createClass({
     },
 
     updateBoardState() {
+        //this.props.boardIncrement++;
         console.log("updating board state");
 
     },

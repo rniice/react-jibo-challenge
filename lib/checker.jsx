@@ -46,11 +46,10 @@ export default React.createClass({
         //checker.append("<h2>Yeah!</h2>");
         console.log("checker added");
     },
-    
+
     componentDidUpdate() {
-        //square is a reference to a DOMElement.
+        //checker is a reference to a DOMElement.
         //let checker = React.findDOMNode(this.refs.checker);
-        //checker.append("<h2>Yeah!</h2>");
         console.log("checker updated");
     }
 

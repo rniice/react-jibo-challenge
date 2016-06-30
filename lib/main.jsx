@@ -2,7 +2,7 @@
 import React from 'react';
 import Board from './board';
 import Controls from './controls';
-import Checker from './checker'     //load local class
+//import Checker from './checker'     //load local class
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
@@ -22,7 +22,6 @@ let Main = React.createClass({
     },
 
     play() {
-        //Board.updateBoardState();
         console.log("Play");     
         let that = this;
         if(!refresh_interval){
@@ -71,7 +70,9 @@ let Main = React.createClass({
     },
 
     updateRender() {
-        console.log("updating render");
+        //this.state.boardIncrement++;
+        this.setState(this.state);
+        console.log("updating render boardIncrement: " + this.state.boardIncrement);
 
     },
 
@@ -79,8 +80,11 @@ let Main = React.createClass({
         var react_element = (
             <div>
                 <Controls control={this}/>
-                <Board size={this.state.size} squareSize={this.state.squareSize}/>
-                //<Checker size={this.state.size} checkerSize={this.state.checkerSize}/>
+                <Board size={this.state.size} 
+                    squareSize={this.state.squareSize} 
+                    checkerSize={this.state.checkerSize} 
+                    boardIncrement={this.state.boardIncrement}>
+                </Board>
             </div>);
         return react_element;
     }
@@ -90,6 +94,6 @@ let Main = React.createClass({
 
 //this is the entry point into react. From here on out we deal almost exclusively with the
 //virtual DOM. Here we tell React to attach everything to the content DOM element.
-React.render(<Main squareSize={80} checkerSize={30} size={5}/>, content, () => {
+React.render(<Main squareSize={80} checkerSize={30} size={5} boardIncrement={0}/>, content, () => {
     console.log("Rendered!");
 });

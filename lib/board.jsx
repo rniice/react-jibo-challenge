@@ -9,16 +9,17 @@ export default React.createClass({
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
     getDefaultProps() {
         return {
-            "newRound" 		: true,
-            "complete"    	: false
+            "newRound" 			  : true,
+            "complete"    		: false,
+            "boardIncrement"	: 101
         };
 
     },
 
     getInitialState() {
         return {
-
-
+            "boardmap"    : [],
+            "checkermap"  : []
         };
     },
 
@@ -26,19 +27,18 @@ export default React.createClass({
 
 
     render() {
-        //this example just creates a row of squares. Use CSS styling to
-        //get the checkers into a mxm size board
+      //this example just creates a row of squares. Use CSS styling to
+      //get the checkers into a mxm size board
 
-        console.log(this.props.boardIncrement);
+      //console.log(this.props.boardIncrement);
 
 	    let size = (this.props.squareSize + 2) * this.props.size;
 	    let style = {
 	        width: size,
 	        height: size
 	    };
-            
+
         //if(this.props.newRound) {          //create a new array of squares and checkers
-        if(true) {          //create a new array of squares and checkers
             let squares = [];
             let checkers = [];
 
@@ -48,8 +48,8 @@ export default React.createClass({
                     let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                     let direction = this.getSquareDirection();
                     //console.log(direction);
-                    
-                    squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction}></Square>); 
+
+                    squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction}></Square>);
                     //checkers.push(<Checker key={key} size={this.props.checkerSize} color={color}></Checker>);
                 }
             }
@@ -59,13 +59,6 @@ export default React.createClass({
 	        return <div style={style}>
 	            {squares}
 	        </div>;
-
-        }
-        else{
-            //just update the checkers
-
-
-        }
 
 
     },
@@ -91,13 +84,18 @@ export default React.createClass({
 
     //state changes will triggera number of methods
 
-    /*always called before render() method and checks 
+    /*always called before render() method and checks
       this.state or this.props to determine if render() is to be called*/
     shouldComponentUpdate (nextProps, nextState){
-        //Access to the upcoming as well as the current props and state 
+        //Access to the upcoming as well as the current props and state
+        console.log("this.props.newRound is: " + this.props.newRound);
 
-        // return a boolean value
-        return true;
+        if(nextProps.newRound) {
+        	this.props.newRound = false;
+        	return true;
+        } else {
+        	return false;
+        }
     },
 
     //gets called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed
@@ -105,21 +103,21 @@ export default React.createClass({
         // perform any preparations for an upcoming update
     },
 
-    //gets called after the render method. Similar to the componentDidMount, 
+    //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
         //checker is a reference to a DOMElement.
         //let checker = React.findDOMNode(this.refs.checker);
-
+        console.log(this.props.boardIncrement.toString());
         //change some of the params like "hidden" based on onboard or "color" based on incycle
 
-        console.log("checker updated");
+        console.log("board updated");
     },
 
     //gets called ONLY when there is a change in props (not a change in this.state)
     componentWillReceiveProps (nextProps) {
       this.setState({
-        // set something 
+        // set something
       });
     },
 
@@ -151,10 +149,10 @@ export default React.createClass({
 
         if (temp_rand == 0) {
             result = {name: 'right', img_path: `url("${'./resources/right.png'}")`, shift: [1,0]};    //right arrow
-        } 
+        }
         else if (temp_rand == 1) {
-            result = {name: 'up', img_path: `url("${'./resources/up.png'}")`, shift: [0,1]};       //up arrow            
-        }        
+            result = {name: 'up', img_path: `url("${'./resources/up.png'}")`, shift: [0,1]};       //up arrow
+        }
         else if (temp_rand == 2) {
             result = {name: 'left', img_path: `url("${'./resources/left.png'}")`, shift: [-1,0]};    //left arrow
         }
@@ -170,14 +168,16 @@ export default React.createClass({
         //this.props.boardIncrement++;
         console.log("updating board state");
 
-    }
+    },
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/
 
+    boardIncrement(){
+        console.log("triggered boardIncrement in board.jsx");
 
+    }
 
 });
 
 //need to import directionality/overlay and key for each square.
-

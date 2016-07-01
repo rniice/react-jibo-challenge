@@ -14,6 +14,16 @@ let refresh_rate     = 2000;    //2 sec
 //This is a React class. It's main methods are 'getInitialState', and 'render'.
 let Main = React.createClass({
 
+    //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
+    getDefaultProps() {
+        return {
+
+
+        };
+
+    },
+
+    //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
     getInitialState() {
         return {
             size: this.props.size,
@@ -22,19 +32,19 @@ let Main = React.createClass({
     },
 
 
-
     render() {
         var react_element = (
             <div>
                 <Controls control={this}>
                 </Controls>
 
-                <Board size={this.state.size} 
-                    squareSize={this.state.squareSize} 
-                    checkerSize={this.state.checkerSize} 
-                    boardIncrement={this.state.boardIncrement}
+                <Board board={this} size={this.state.size}
+                    squareSize={this.state.squareSize}
+                    checkerSize={this.state.checkerSize}
+                    //boardIncrement={this.state.boardIncrement}
                     newRound={this.state.newRound}>
                 </Board>
+
             </div>);
 
         return react_element;
@@ -47,19 +57,19 @@ let Main = React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        console.log("board added");
+        console.log("main component added");
     },
 
 
     /*********  STANDALONE CUSTOM METHODS ***********/
 
     play() {
-        console.log("Play");     
+        console.log("Play");
         let that = this;
         if(!refresh_interval){
             refresh_interval = setInterval(function() {
                 that.updateRender();
-            }, refresh_rate);            
+            }, refresh_rate);
         } else{
             console.log("already playing");
         }
@@ -105,24 +115,25 @@ let Main = React.createClass({
     },
 
     updateRender() {
-        this.state.boardIncrement +=1;
+        //this.props.board.boardIncrement +=1;
+        console.log("updating render animation in mainjsx");
         this.setState(this.state);
-        //console.log(this.state.boardIncrement.toString());
-
+        //console.log(this.props.board.boardIncrement.toString());
+        console.log(this.props.board.boardIncrement.toString());
     },
 
 
-
-
     /*********  END STANDALONE CUSTOM METHODS ***********/
-
-
-
+    boardIncrement(){
+        console.log("triggered boardIncrement in main.jsx");
+        //this.props.board.boardIncrement();
+        this.props.boardboardIncrement++;
+    }
 
 });
 
 //this is the entry point into react. From here on out we deal almost exclusively with the
 //virtual DOM. Here we tell React to attach everything to the content DOM element.
-React.render(<Main newRound={true} squareSize={80} checkerSize={30} size={5} boardIncrement={0}/>, content, () => {
+React.render(<Main newRound={true} squareSize={80} checkerSize={30} size={5}/>, content, () => {
     console.log("Rendered!");
 });

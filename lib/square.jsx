@@ -19,8 +19,8 @@ export default React.createClass({
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
     getInitialState() {
         return {
-            
-            
+
+
         };
     },
 
@@ -60,10 +60,10 @@ export default React.createClass({
 
     //state changes will triggera number of methods
 
-    /*always called before render() method and checks 
+    /*always called before render() method and checks
       this.state or this.props to determine if render() is to be called*/
     shouldComponentUpdate (nextProps, nextState){
-        //Access to the upcoming as well as the current props and state 
+        //Access to the upcoming as well as the current props and state
 
         // return a boolean value
         return true;
@@ -74,7 +74,7 @@ export default React.createClass({
         // perform any preparations for an upcoming update
     },
 
-    //gets called after the render method. Similar to the componentDidMount, 
+    //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
         //square is a reference to a DOMElement.

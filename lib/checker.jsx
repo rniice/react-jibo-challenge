@@ -26,8 +26,9 @@ export default React.createClass({
     /*
     getInitialState() {
         return {
-
-
+            "currentPosition" : ['default'],
+            "nextPosition"    : ['default'],
+            "positionHistory" : [],
         };
     },
     */

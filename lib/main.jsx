@@ -9,7 +9,7 @@ let content = document.getElementById('content');
 let board = document.getElementById('board');
 
 let refresh_interval = null;
-let refresh_rate     = 2000;    //2 sec
+let refresh_rate     = 1000;    //2 sec
 
 
 //This is a React class. It's main methods are 'getInitialState', and 'render'.
@@ -49,10 +49,7 @@ let Main = React.createClass({
                     checkerSize={this.state.checkerSize}
                     newRound={this.state.newRound}
                     shuffle={this.state.shuffle}
-                    updateCheckers={this.state.updateCheckers}
-                    //directionArray={[]}
-                    /*boardIncrement={this.state.boardIncrement}
-                    newRound={this.state.newRound}*/ />
+                    updateCheckers={this.state.updateCheckers}/>
             </div>);
 
         return react_element;
@@ -104,25 +101,27 @@ let Main = React.createClass({
         clearInterval(refresh_interval);
         refresh_interval = null;
 
-        let new_size = null;
-        let new_square_size = null;
-        let new_checker_size = null;
+          let new_size = null;
+          let new_square_size = null;
+          let new_checker_size = null;
 
         //we update our internal state.
-        if(args) {
-            new_size = args.size,
-            new_square_size = args.squareSize,
-            new_checker_size = args.checkerSize
-        }
-        else if(this.state.size <= 20){
-            new_size = this.state.size + 2;
-            new_square_size = this.state.squareSize - 4;
-            new_checker_size = this.state.checkerSize - 4;
-        } else {
-            new_size = 5,
-            new_square_size = 80,
-            new_checker_size = 80
-        }
+          if(args) {
+              new_size = args.size,
+              new_square_size = args.squareSize,
+              new_checker_size = args.checkerSize
+          }
+          else if(this.state.size <= 20){
+              new_size = this.state.size + 2;
+              new_square_size = this.state.squareSize - 4;
+              new_checker_size = this.state.checkerSize - 4;
+          } else {
+              new_size = 5,
+              new_square_size = 80,
+              new_checker_size = 80
+          }
+
+        //this.stop();
 
         this.setState({
             size: new_size,
@@ -132,6 +131,7 @@ let Main = React.createClass({
     },
 
     shuffle() {
+        //this.stop();
         this.setState({shuffle: true});   //toggle on for an update
         this.setState({shuffle: false});  //then immediately toggle off
     },
@@ -147,11 +147,6 @@ let Main = React.createClass({
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/
-    boardIncrementMain(){
-        console.log("triggered boardIncrementMain in main.jsx");
-        //this.props.board.boardIncrement();
-        //this.props.boardIncrement++;
-    }
 
 });
 

@@ -27,7 +27,8 @@ export default React.createClass({
             "boardmap"    : [],
             "checkermap"  : []
             */
-            directionArray : []
+            directionArray : [],
+            checkerArray : []     //which checkers are on each square
         };
     },
 
@@ -51,20 +52,29 @@ export default React.createClass({
       console.log("shuffle value: " + this.props.shuffle);
 
       if(this.props.newRound || this.props.shuffle){
-          this.state.directionArray = [];    //reset the stored direction array
           this.props.newRound = false;
           this.props.shuffle = false;
 
           let temp_direction_array = [];
+          let temp_checker_array = [];
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
 
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                   let direction = this._getSquareDirection();
+                  let checker_number = square_number;
+
                   temp_direction_array.push(direction);
 
-                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
+                  temp_checker_array.push({
+                      name: checker_number,
+                      currentPosition: [i, j],
+                      nextPosition: [i+direction.shift[0],j+direction.shift[1]],
+                      positionHistory: [i, j]
+                  });
+
+                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} >
                     </Square>);
 
                   square_number++;
@@ -72,23 +82,44 @@ export default React.createClass({
           }
 
           this.state.directionArray = temp_direction_array;    //set new direction array
-          console.log(this.state.directionArray);
+          this.state.checkerArray = temp_checker_array;        //set new checker array
+
+          //console.log(this.state.directionArray);
 
       } else if (this.props.updateCheckers){
           console.log("in updateCheckers mode");
-          console.log(this.state.directionArray);
+          //console.log(this.state.directionArray);
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
 
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                   let direction = this.state.directionArray[square_number];
+                  let current_board_position = [i, j];
 
-                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
-                    </Square>);
+                  //console.log("current board position:" + current_board_position.toString());
+                  //loop through the checkerArray to see which ones should be rendered on this square
+                  for(let k=0; k < this.state.checkerArray.length; k++){
+                      let current_checker = this.state.checkerArray[k];
+                      let current_checker_position = current_checker.currentPosition;
+                      let current_checker_next_position = current_checker.nextPosition;
+                      //console.log("current board position:" + current_board_position.toString());
+                      console.log("current checker position: " + current_checker_position);
+                      //console.log("current checker next position: " + current_checker_next_position);
+
+                      if(current_checker_next_position.toString() == current_board_position.toString()){
+                          console.log("match");
+                          //console.log("checkers at position: " + current_board_position);
+                          squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={current_checker.name}>
+                            </Square>);
+                      } else {
+                          squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={current_checker.name}>
+                            </Square>);
+                      }
+
+                  }
 
                   square_number++;
-
               }
           }
 
@@ -155,8 +186,8 @@ export default React.createClass({
     componentDidUpdate() {
         //checker is a reference to a DOMElement.
         //let checker = React.findDOMNode(this.refs.checker);
-        this.props.boardIncrement++;
-        console.log(this.props.boardIncrement.toString());
+        //this.props.boardIncrement++;
+        //console.log(this.props.boardIncrement.toString());
         //change some of the params like "hidden" based on onboard or "color" based on incycle
 
         console.log("board updated");

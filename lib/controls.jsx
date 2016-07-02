@@ -5,13 +5,13 @@ import {Button, ButtonToolbar} from 'react-bootstrap'
 export default React.createClass({
     getInitialState() {
         return {
-          
+
         };
     },
 
     onPlay() {
         this.props.control.play();
-        this.props.control.boardIncrementMain();
+        //this.props.control.boardIncrementMain();
     },
 
 

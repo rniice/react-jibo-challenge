@@ -29,6 +29,7 @@ let Main = React.createClass({
         return {
             size: this.props.size,
             squareSize: this.props.squareSize,
+            updateCheckers: false,  //calculate and run next move
             newRound: true,
             shuffle: false
         };
@@ -48,6 +49,8 @@ let Main = React.createClass({
                     checkerSize={this.state.checkerSize}
                     newRound={this.state.newRound}
                     shuffle={this.state.shuffle}
+                    updateCheckers={this.state.updateCheckers}
+                    //directionArray={[]}
                     /*boardIncrement={this.state.boardIncrement}
                     newRound={this.state.newRound}*/ />
             </div>);
@@ -70,6 +73,9 @@ let Main = React.createClass({
 
     play() {
         console.log("Play");
+        //this.setState({newRound: false});
+        this.setState({'updateCheckers': true, 'newRound': false, 'shuffle': false});
+
         let that = this;
         if(!refresh_interval){
             refresh_interval = setInterval(function() {
@@ -98,29 +104,36 @@ let Main = React.createClass({
         clearInterval(refresh_interval);
         refresh_interval = null;
 
+        let new_size = null;
+        let new_square_size = null;
+        let new_checker_size = null;
+
         //we update our internal state.
         if(args) {
-            this.state.size = args.size;
-            this.state.squareSize = args.squareSize;
-            this.state.checkerSize = args.checkerSize;
+            new_size = args.size,
+            new_square_size = args.squareSize,
+            new_checker_size = args.checkerSize
         }
         else if(this.state.size <= 20){
-            this.state.size+=2;
-            this.state.squareSize -=4;
-            this.state.checkerSize -=4;
+            new_size = this.state.size + 2;
+            new_square_size = this.state.squareSize - 4;
+            new_checker_size = this.state.checkerSize - 4;
         } else {
-            this.state.size = 5;
-            this.state.squareSize = 80;
-            this.state.checkerSize = 80;
+            new_size = 5,
+            new_square_size = 80,
+            new_checker_size = 80
         }
-        //setting our state forces a rerender, which in turn will call the render() method
-        //of this class. This is how everything gets redrawn and how you 'react' to user input
-        //to change the state of the DOM.
-        this.setState(this.state);
+
+        this.setState({
+            size: new_size,
+            squareSize: new_square_size,
+            checkerSize: new_checker_size
+        });
     },
 
     shuffle() {
-        this.setState({shuffle: true});
+        this.setState({shuffle: true});   //toggle on for an update
+        this.setState({shuffle: false});  //then immediately toggle off
     },
 
     updateRender() {
@@ -144,6 +157,6 @@ let Main = React.createClass({
 
 //this is the entry point into react. From here on out we deal almost exclusively with the
 //virtual DOM. Here we tell React to attach everything to the content DOM element.
-React.render(<Main newRound={true} squareSize={80} checkerSize={30} size={5}/>, content, () => {
+React.render(<Main newRound={true} shuffle={false} updateCheckers={false} squareSize={80} checkerSize={30} size={5}/>, content, () => {
     console.log("Rendered!");
 });

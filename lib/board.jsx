@@ -8,32 +8,34 @@ export default React.createClass({
 
 
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
+    /*
     getDefaultProps() {
         return {
-            //"newRound" 			  : true,
-            //"shuffle"         : true,
+            "newRound" 			  : true,
+            "shuffle"         : false,
+            "updateCheckers"  : false,
             "complete"    		: false,
             "boardIncrement"	: 0,
             "directionArray"  : []
         };
-
     },
+    */
 
     getInitialState() {
         return {
+            /*
             "boardmap"    : [],
             "checkermap"  : []
+            */
+            directionArray : []
         };
     },
+
 
     //make a function that render can call to determine what properties get updated
 
 
     render() {
-      //this example just creates a row of squares. Use CSS styling to
-      //get the checkers into a mxm size board
-
-      //console.log(this.props.boardIncrement);
 
 	    let size = (this.props.squareSize + 2) * this.props.size;
 	    let style = {
@@ -41,9 +43,7 @@ export default React.createClass({
 	        height: size
 	    };
 
-      //if(this.props.newRound) {          //create a new array of squares and checkers
       let squares = [];
-
       let key = 0;
       let square_number = 0;
 
@@ -51,38 +51,50 @@ export default React.createClass({
       console.log("shuffle value: " + this.props.shuffle);
 
       if(this.props.newRound || this.props.shuffle){
-
-          this.props.directionArray = [];    //reset the stored direction array
+          this.state.directionArray = [];    //reset the stored direction array
           this.props.newRound = false;
           this.props.shuffle = false;
 
+          let temp_direction_array = [];
+
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
-                  square_number++;
 
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                   let direction = this._getSquareDirection();
-                  this.props.directionArray.push(direction);
+                  temp_direction_array.push(direction);
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
                     </Square>);
+
+                  square_number++;
               }
           }
 
-      } else {
+          this.state.directionArray = temp_direction_array;    //set new direction array
+          console.log(this.state.directionArray);
+
+      } else if (this.props.updateCheckers){
+          console.log("in updateCheckers mode");
+          console.log(this.state.directionArray);
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
-                  square_number++;
 
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
-                  let direction = this.props.directionArray[square_number];
+                  let direction = this.state.directionArray[square_number];
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
                     </Square>);
+
+                  square_number++;
+
               }
           }
 
+      }
+      else {
+         console.log("not doing anything to board render!!");
       }
 
       //this.props.newRound = false;
@@ -116,20 +128,21 @@ export default React.createClass({
 
     /*always called before render() method and checks
       this.state or this.props to determine if render() is to be called*/
+
+    /*
     shouldComponentUpdate (nextProps, nextState){
         //Access to the upcoming as well as the current props and state
-        console.log("this.props.newRound is: " + this.props.newRound);
+        //console.log("this.props.newRound is: " + this.props.newRound);
 
-        return true;
-        /*
         if(this.props.newRound) {
         	this.props.newRound = false;
         	return true;
         } else {
         	return false;
         }
-        */
+
     },
+    */
 
     //gets called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed
     componentWillUpdate (nextProps, nextState){
@@ -138,6 +151,7 @@ export default React.createClass({
 
     //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
+
     componentDidUpdate() {
         //checker is a reference to a DOMElement.
         //let checker = React.findDOMNode(this.refs.checker);
@@ -149,6 +163,7 @@ export default React.createClass({
     },
 
     //gets called ONLY when there is a change in props (not a change in this.state)
+    /*
     componentWillReceiveProps (nextProps) {
       console.log("called from change in props in board jsx");
 
@@ -156,8 +171,10 @@ export default React.createClass({
         // set something
       });
     },
+    */
 
     //return true under certain conditions e.g. if the checker goes off board and to be deleted
+    /*
     componentWillUnmount (nextProps, nextState){
         if(condition){
             return true;
@@ -166,7 +183,7 @@ export default React.createClass({
         }
 
     },
-
+    */
 
     /*********  END STATE CHANGE METHODS ************/
 
@@ -198,6 +215,10 @@ export default React.createClass({
 
         //console.log(result);
         return result;
+    },
+
+    _test(){
+      console.log("triggered test function");
     },
 
     updateBoardState() {

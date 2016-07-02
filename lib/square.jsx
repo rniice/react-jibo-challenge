@@ -1,5 +1,6 @@
 import React from 'react';
-import Sound from 'react-sound';
+//import Sound from 'react-sound';
+import Checker from './checker';    //load local class
 
 
 //this exports a reference to a React class as the default export
@@ -32,11 +33,15 @@ export default React.createClass({
             backgroundImage: this.props.direction.img_path,
             backgroundColor: this.props.color,
         };
+
+
+
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
         var react_element = (
             <div className ='square' ref='square' style={style}>
-            <p className = 'checker'>TEST</p>
+              <div className ='checker' ref='checker' style={style}>{this.props.direction.shift}
+              </div>
             </div>);
 
         return react_element;

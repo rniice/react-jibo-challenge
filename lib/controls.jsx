@@ -4,12 +4,14 @@ import {Button, ButtonToolbar} from 'react-bootstrap'
 
 export default React.createClass({
     getInitialState() {
-        return {};
+        return {
+          
+        };
     },
 
     onPlay() {
         this.props.control.play();
-        this.props.control.boardIncrement();
+        this.props.control.boardIncrementMain();
     },
 
 
@@ -26,12 +28,17 @@ export default React.createClass({
         this.props.control.setSize();
     },
 
+    onBoardShuffle() {
+        this.props.control.shuffle();
+    },
+
     render() {
         return <ButtonToolbar>
             <Button bsStyle="success" onClick={this.onPlay}>Play</Button>
             <Button bsStyle="danger" onClick={this.onStop}>Stop</Button>
             <Button bsStyle="primary" onClick={this.onReset}>Reset</Button>
             <Button onClick={this.onSetSize}>Set Size</Button>
+            <Button onClick={this.onBoardShuffle}>Shuffle</Button>
         </ButtonToolbar>
     }
 });

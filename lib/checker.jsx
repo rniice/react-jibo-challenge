@@ -40,9 +40,8 @@ export default React.createClass({
         let random = Math.random(0,10).toFixed(2).toString();
 
         var react_element = (
-            <div className ='square' ref='square' style={style}>
-            <p className = 'checker'>{random}</p>
-            </div>);
+              <p className = 'checker'>{random}</p>
+            );
 
         return react_element;
     },

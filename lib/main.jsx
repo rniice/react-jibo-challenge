@@ -114,20 +114,24 @@ let Main = React.createClass({
         this.setState(this.state);
     },
 
+    shuffle() {
+
+    },
+
     updateRender() {
         //this.props.board.boardIncrement +=1;
         console.log("updating render animation in mainjsx");
+
         this.setState(this.state);
         //console.log(this.props.board.boardIncrement.toString());
-        console.log(this.props.board.boardIncrement.toString());
     },
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/
-    boardIncrement(){
-        console.log("triggered boardIncrement in main.jsx");
+    boardIncrementMain(){
+        console.log("triggered boardIncrementMain in main.jsx");
         //this.props.board.boardIncrement();
-        this.props.boardboardIncrement++;
+        //this.props.boardIncrement++;
     }
 
 });

@@ -27,20 +27,24 @@ export default React.createClass({
 
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
-        let style = {
+        let square_style = {
             width: this.props.size,
             height: this.props.size,
             backgroundImage: this.props.direction.img_path,
             backgroundColor: this.props.color,
         };
 
-
+        let checker_style = {
+            width: this.props.size,
+            height: this.props.size,
+            color: '#0000FF'
+        };
 
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
         var react_element = (
-            <div className ='square' ref='square' style={style}>
-              <div className ='checker' ref='checker' style={style}>{this.props.direction.shift}
+            <div className ='square' ref='square' style={square_style}>
+              <div className ='checker' ref='checker' style={checker_style}>{this.props.direction.name}
               </div>
             </div>);
 

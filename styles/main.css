@@ -13,7 +13,7 @@
 .checker {
     border: 1px solid #008800;
     float: left;
-    color: red;
+    /*color: red;*/
 }
 
 
@@ -27,6 +27,3 @@
 
 
 }
-
-
-

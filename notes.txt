@@ -1,5 +1,7 @@
 dromake each checker an object
 
+ADD BUTTON TO SHUFFLE ALL ARROWS
+
 -this._currentPosition
 -this._nextPosition
 -this._color
@@ -14,14 +16,14 @@ dromake each checker an object
 algorithms:
 1/when off the table
 
-this._currentPosition > N or < 0 
+this._currentPosition > N or < 0
 
 
 2/when in a cycle
 
-//use underscore or something, 
+//use underscore or something,
 
-when any entry in this._positionHistory repeats, that means a cycle 
+when any entry in this._positionHistory repeats, that means a cycle
 
 is entered
 
@@ -31,7 +33,7 @@ is entered
 //make a falling sound when checker falls of
 
 
-//make the mario bros yellow star sound when a checker gets into a 
+//make the mario bros yellow star sound when a checker gets into a
 
 cycle
 
@@ -40,12 +42,11 @@ cycle
 
 
 
-board/ will need to have a refresh function that calls each checker 
+board/ will need to have a refresh function that calls each checker
 
-to updatePosition() and then updateStatus() which checks against 
+to updatePosition() and then updateStatus() which checks against
 
 algorithms 1 and 2
 
 
 -deploy it as a gh-pages branch behind michael-crockett.com/
-

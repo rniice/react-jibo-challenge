@@ -44,14 +44,18 @@ export default React.createClass({
       let checkers = [];
 
       let key = 0;
+      let checker_number = 0;
+
       for(let i = 0; i < this.props.size; i++) {
           for(let j = 0; j < this.props.size; j++) {
+              checker_number++;
+
               let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
               let direction = this.getSquareDirection();
               //console.log(direction);
 
-              squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction}>
-                  <Checker/>
+              squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number}>
+                  /*<Checker checkerNumber={checker_number}/>*/
                 </Square>);
               //checkers.push(<Checker key={key} size={this.props.checkerSize} color={color}></Checker>);
           }

@@ -8,8 +8,9 @@ export default React.createClass({
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
     getDefaultProps() {
         return {
-            "currentPosition" : [],
-            "nextPosition"    : [],
+            "checkerNumber"   : 0,
+            "currentPosition" : ['default'],
+            "nextPosition"    : ['default'],
             "color"           : "#FF0000",
             "emitSound"       : "soundfileload.mp3",
             "positionHistory" : [],
@@ -29,18 +30,10 @@ export default React.createClass({
 
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
-        let style = {
-            width: this.props.checkerSize,
-            height: this.props.checkerSize
-            //backgroundImage: this.props.direction.img_path,
-            //backgroundColor: this.props.color,
-        };
-        //To set a div's class in React you must use the 'className' attribute, instead of the
-        //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
-        let random = Math.random(0,10).toFixed(2).toString();
+        let checker_style = this.props.style;
 
         var react_element = (
-              <p className = 'checker'>{random}</p>
+              <p className = 'checker' ref='checker' style={checker_style}>{this.props.checkerNumber}</p>
             );
 
         return react_element;

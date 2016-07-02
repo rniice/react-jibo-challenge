@@ -35,17 +35,17 @@ export default React.createClass({
         };
 
         let checker_style = {
-            width: this.props.size,
-            height: this.props.size,
+            fontSize: '20',
             color: '#0000FF'
         };
+
+        //calculate which checkers are on the square here then if multiple pass a [].map for each checker to generate
 
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
         var react_element = (
             <div className ='square' ref='square' style={square_style}>
-              <div className ='checker' ref='checker' style={checker_style}>{this.props.direction.name}
-              </div>
+              <Checker style={checker_style} checkerNumber={this.props.checkerNumber}/>
             </div>);
 
         return react_element;

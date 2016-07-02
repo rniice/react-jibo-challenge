@@ -57,9 +57,8 @@ export default React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        //square is a reference to a DOMElement.
         let square = React.findDOMNode(this.refs.square);
-        console.log("square added");
+        //console.log("square added");
     },
 
     /*********  END COMPONENT INITIALIZATION ***********/

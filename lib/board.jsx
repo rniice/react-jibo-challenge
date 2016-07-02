@@ -10,9 +10,11 @@ export default React.createClass({
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
     getDefaultProps() {
         return {
-            "newRound" 			  : true,
+            //"newRound" 			  : true,
+            //"shuffle"         : true,
             "complete"    		: false,
-            "boardIncrement"	: 0
+            "boardIncrement"	: 0,
+            "directionArray"  : []
         };
 
     },
@@ -41,29 +43,51 @@ export default React.createClass({
 
       //if(this.props.newRound) {          //create a new array of squares and checkers
       let squares = [];
-      let checkers = [];
 
       let key = 0;
-      let checker_number = 0;
+      let square_number = 0;
 
-      for(let i = 0; i < this.props.size; i++) {
-          for(let j = 0; j < this.props.size; j++) {
-              checker_number++;
+      console.log("newRound value: " + this.props.newRound);
+      console.log("shuffle value: " + this.props.shuffle);
 
-              let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
-              let direction = this.getSquareDirection();
-              //console.log(direction);
+      if(this.props.newRound || this.props.shuffle){
 
-              squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number}>
-                  /*<Checker checkerNumber={checker_number}/>*/
-                </Square>);
-              //checkers.push(<Checker key={key} size={this.props.checkerSize} color={color}></Checker>);
+          this.props.directionArray = [];    //reset the stored direction array
+          this.props.newRound = false;
+          this.props.shuffle = false;
+
+          for(let i = 0; i < this.props.size; i++) {
+              for(let j = 0; j < this.props.size; j++) {
+                  square_number++;
+
+                  let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
+                  let direction = this._getSquareDirection();
+                  this.props.directionArray.push(direction);
+
+                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
+                    </Square>);
+              }
           }
+
+      } else {
+
+          for(let i = 0; i < this.props.size; i++) {
+              for(let j = 0; j < this.props.size; j++) {
+                  square_number++;
+
+                  let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
+                  let direction = this.props.directionArray[square_number];
+
+                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={square_number}>
+                    </Square>);
+              }
+          }
+
       }
 
       //this.props.newRound = false;
 
-      return <div style={style}>
+      return <div className='board' ref='board' style={style}>
           {squares}
       </div>;
 
@@ -151,7 +175,7 @@ export default React.createClass({
     /*********  STANDALONE CUSTOM METHODS ***********/
 
     //returns coordinate shift [+x, +y]
-    getSquareDirection() {
+    _getSquareDirection() {
         let result = null;
 
         // Returns a random integer between min (included) and max (excluded)

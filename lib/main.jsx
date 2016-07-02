@@ -6,6 +6,7 @@ import Controls from './controls';
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
+let board = document.getElementById('board');
 
 let refresh_interval = null;
 let refresh_rate     = 2000;    //2 sec
@@ -27,7 +28,9 @@ let Main = React.createClass({
     getInitialState() {
         return {
             size: this.props.size,
-            squareSize: this.props.squareSize
+            squareSize: this.props.squareSize,
+            newRound: true,
+            shuffle: false
         };
     },
 
@@ -38,13 +41,15 @@ let Main = React.createClass({
                 <Controls control={this}>
                 </Controls>
 
-                <Board board={this} size={this.state.size}
+                <Board
+                    board={this}
+                    size={this.state.size}
                     squareSize={this.state.squareSize}
                     checkerSize={this.state.checkerSize}
-                    //boardIncrement={this.state.boardIncrement}
-                    newRound={this.state.newRound}>
-                </Board>
-
+                    newRound={this.state.newRound}
+                    shuffle={this.state.shuffle}
+                    /*boardIncrement={this.state.boardIncrement}
+                    newRound={this.state.newRound}*/ />
             </div>);
 
         return react_element;
@@ -115,7 +120,7 @@ let Main = React.createClass({
     },
 
     shuffle() {
-
+        this.setState({shuffle: true});
     },
 
     updateRender() {
@@ -123,6 +128,7 @@ let Main = React.createClass({
         console.log("updating render animation in mainjsx");
 
         this.setState(this.state);
+        //this.setState(this.state);
         //console.log(this.props.board.boardIncrement.toString());
     },
 

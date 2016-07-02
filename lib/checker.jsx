@@ -45,10 +45,8 @@ export default React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        //square is a reference to a DOMElement.
         let checker = React.findDOMNode(this.refs.checker);
-        //checker.append("<h2>Yeah!</h2>");
-        console.log("checker added");
+        //console.log("checker added");
     },
 
 
@@ -80,8 +78,7 @@ export default React.createClass({
         //let checker = React.findDOMNode(this.refs.checker);
 
         //change some of the params like "hidden" based on onboard or "color" based on incycle
-
-        console.log("checker updated");
+        //console.log("checker updated");
     },
 
     //gets called ONLY when there is a change in props (not a change in this.state)

@@ -74,18 +74,36 @@ export default React.createClass({
                           newCheckerStyles: true
                       };
 
+                      temp_checker_array.push(initial_checker_present);
 
-                  } else {  //render checkers at all positions
+                      squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
+                        </Square>);
 
+                  } else if (std_mode_checker_start[0]==j && std_mode_checker_start[1]==i ){  //render checkers only at random selected position
 
+                      initial_checker_present = {
+                          name: checker_number,
+                          currentPosition: [i, j],
+                          nextPosition: [i+direction.shift[0],j+direction.shift[1]],
+                          positionHistory: first_history,
+                          isUpdated: false,
+                          inCycle: false,
+                          randomBackgroundColor: randomColor(),
+                          newCheckerStyles: true
+                      };
+
+                      temp_checker_array.push(initial_checker_present);
+
+                      squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
+                        </Square>);
+
+                  } else {  //just render a standard empty square
+
+                    squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[]} >
+                      </Square>);
+
+                      //console.log("we have a problem in standard mode");
                   }
-
-
-
-                  temp_checker_array.push(initial_checker_present);
-
-                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
-                    </Square>);
 
                   square_number++;
               }

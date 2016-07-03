@@ -31,13 +31,18 @@ export default React.createClass({
         this.props.control.shuffle();
     },
 
+    onBoardWildMode() {
+        this.props.control.toggleWildMode();
+    },
+
     render() {
         return <ButtonToolbar>
             <Button bsStyle="success" onClick={this.onPlay}>Play</Button>
             <Button bsStyle="danger" onClick={this.onStop}>Stop</Button>
             <Button bsStyle="primary" onClick={this.onReset}>Reset</Button>
-            <Button onClick={this.onSetSize}>Set Size</Button>
-            <Button onClick={this.onBoardShuffle}>Shuffle</Button>
+            <Button bsStyle="info" onClick={this.onSetSize}>Set Size</Button>
+            <Button bsStyle="info" onClick={this.onBoardShuffle}>Shuffle</Button>
+            <Button bsStyle="warning" onClick={this.onBoardWildMode}>Get Wild</Button>
         </ButtonToolbar>
     }
 });

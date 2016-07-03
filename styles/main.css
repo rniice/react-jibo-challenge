@@ -4,16 +4,17 @@
 }
 
 .square {
-	opacity: 0.5;
+	  opacity: 1.0;
     border: 1px solid #777777;
     float: left;
 
 }
 
 .checker {
-    border: 3px solid #008800;
+    border: 2px solid #FFFFFF;
     float: left;
-    /*color: red;*/
+    color: #FFFFFF,
+    opacity: 1.0
 }
 
 

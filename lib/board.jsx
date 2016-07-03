@@ -2,6 +2,8 @@ import React from 'react';
 import Square from './square';      //load local class
 import Checker from './checker';    //load local class
 
+import randomColor from 'randomcolor';
+
 export default React.createClass({
 
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
@@ -60,6 +62,7 @@ export default React.createClass({
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                   let direction = this._getSquareDirection();
                   let checker_number = square_number;
+
                   let first_history = [];
                   first_history.push([i, j]);
 
@@ -69,11 +72,13 @@ export default React.createClass({
                       name: checker_number,
                       currentPosition: [i, j],
                       nextPosition: [i+direction.shift[0],j+direction.shift[1]],
-                      //positionHistory: first_history,
-                      isUpdated: false
+                      positionHistory: first_history,
+                      isUpdated: false,
+                      inCycle: false,
+                      randomBackgroundColor: randomColor()
                   };
 
-                  //console.log(initial_checker_present);
+                  //console.log(initial_checker_present.randomBackgroundColor);
                   temp_checker_array.push(initial_checker_present);
                   //console.log("at square y = " + i + " x = " + j + " checkernextpos is: " + initial_checker_present.nextPosition.toString());
 
@@ -100,8 +105,8 @@ export default React.createClass({
 
                   let new_checkers_present = [];
 
-                  console.log("i is: " + i);
-                  console.log("j is: " + j);
+                  //console.log("i is: " + i);
+                  //console.log("j is: " + j);
 
                   let scoped_i = i;
                   let scoped_j = j;
@@ -280,10 +285,6 @@ export default React.createClass({
 
         //console.log(result);
         return result;
-    },
-
-    _test(){
-      console.log("triggered test function");
     },
 
     updateBoardState() {

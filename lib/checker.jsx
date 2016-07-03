@@ -38,16 +38,25 @@ export default React.createClass({
 
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
-        //let checker_style = this.props.style;
+        let checker_style = this.props.style;
+        let checker_inCycle = this.props.inCycle;
 
+        if(checker_inCycle){
+          checker_style.backgroundColor = '#FFFF66';
+        }
+
+        /*
         let checker_style = {
             color: '#FF0000',
-            fontSize: '20'
+            fontSize: '10'
+            //backgroundColor: '#99CCFF',
+            //backgroundColor: this.props.backgroundColor,
             //width: this.props.size,
             //height: this.props.size,
             //backgroundImage: this.props.direction.img_path,
             //backgroundColor: this.props.color
         };
+        */
 
         let react_element = (
               <p className = 'checker' ref='checker' style={checker_style}>{this.props.checkerNumber}</p>

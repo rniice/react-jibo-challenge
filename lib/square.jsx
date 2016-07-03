@@ -43,16 +43,18 @@ export default React.createClass({
 
         let present_checkers = this.props.checkersPresent;
 
-        let checker_style = {
-            fontSize: '20',
-            color: '#0000FF'
-        };
-
         //for each present checker on the square add a new checker using map function
         checkers = present_checkers.map(function(present_checker){
             key++;
-            return (<Checker style={checker_style} key={key} checkerNumber={present_checker.name}/>);
 
+            let checker_style = {
+                fontSize: '10',
+                color: '#0000FF',
+                //backgroundColor: '#99CCFF'
+                backgroundColor: present_checker.randomBackgroundColor
+            };
+
+            return (<Checker style={checker_style} key={key} inCycle={present_checker.inCycle} checkerNumber={present_checker.name}/>);
         });
 
         //calculate which checkers are on the square here then if multiple pass a [].map for each checker to generate

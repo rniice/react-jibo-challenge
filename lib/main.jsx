@@ -2,14 +2,15 @@
 import React from 'react';
 import Board from './board';
 import Controls from './controls';
-//import Checker from './checker';     //load local class
+//import IPod from './node_modules/ipod/index.js';
+//var Ipod = require('ipod');
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
 let board = document.getElementById('board');
 
 let refresh_interval = null;
-let refresh_rate     = 3000;    //2 sec
+let refresh_rate     = 1000;    //2 sec
 
 
 //This is a React class. It's main methods are 'getInitialState', and 'render'.
@@ -134,7 +135,17 @@ let Main = React.createClass({
         //this.stop();
         this.setState({shuffle: true});   //toggle on for an update
         this.setState({shuffle: false});  //then immediately toggle off
+
+        //this._playSound();
     },
+
+    /*
+    getFancyState() {
+        //this.stop();
+        this.setState({shuffle: true});   //toggle on for an update
+        this.setState({shuffle: false});  //then immediately toggle off
+    },
+    */
 
     updateRender() {
         //this.props.board.boardIncrement +=1;
@@ -143,7 +154,23 @@ let Main = React.createClass({
         this.setState(this.state);
         //this.setState(this.state);
         //console.log(this.props.board.boardIncrement.toString());
-    },
+    }
+
+/*
+    _playSound() {
+        // create ipod instance
+        var ipod = new IPod('./resources/unscrew_lightbulb-mike-koenig.mp3');
+
+        // play now and callback when playend
+        ipod.play();
+
+        setTimeout(function(){
+        	// stop playing
+        	ipod.stop();
+        },500);
+
+    }
+*/
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/

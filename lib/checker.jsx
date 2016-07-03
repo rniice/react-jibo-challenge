@@ -19,11 +19,6 @@ export default React.createClass({
 
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
     getInitialState() {
-        /*
-        return {
-
-        };
-        */
         return null;
     },
 
@@ -36,19 +31,6 @@ export default React.createClass({
         if(checker_inCycle){
           checker_style.backgroundColor = '#FFFF66';
         }
-
-        /*
-        let checker_style = {
-            color: '#FF0000',
-            fontSize: '10'
-            //backgroundColor: '#99CCFF',
-            //backgroundColor: this.props.backgroundColor,
-            //width: this.props.size,
-            //height: this.props.size,
-            //backgroundImage: this.props.direction.img_path,
-            //backgroundColor: this.props.color
-        };
-        */
 
         let react_element = (
               <p className = 'checker' ref='checker' style={checker_style}>{this.props.checkerNumber}</p>
@@ -126,11 +108,7 @@ export default React.createClass({
     /*********  END STATE CHANGE METHODS ************/
 
 
-
     /*********  STANDALONE CUSTOM METHODS ***********/
-
-
-
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/

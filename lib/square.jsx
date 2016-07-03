@@ -11,8 +11,7 @@ export default React.createClass({
     /*
     getDefaultProps() {
         return {
-            "index"           : 0,
-            "position"        : [0,0]
+
         };
 
     },
@@ -22,7 +21,6 @@ export default React.createClass({
     /*
     getInitialState() {
         return {
-
 
         };
     },
@@ -43,7 +41,7 @@ export default React.createClass({
 
         let present_checkers = this.props.checkersPresent;
 
-        //for each present checker on the square add a new checker using map function
+        //calculate which checkers are on the square here then if multiple pass a [].map for each checker to generate
         checkers = present_checkers.map(function(present_checker){
             key++;
 
@@ -55,14 +53,6 @@ export default React.createClass({
 
             return (<Checker style={checker_style} key={key} inCycle={present_checker.inCycle} checkerNumber={present_checker.name}/>);
         });
-
-        //calculate which checkers are on the square here then if multiple pass a [].map for each checker to generate
-        //checkers.push(<Checker style={checker_style} key={'woof'} checkerNumber={this.props.checkerNumber}/>);
-
-        //To set a div's class in React you must use the 'className' attribute, instead of the
-        //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
-
-        //console.log(this.props.key);
 
         var react_element = (
             <div className ='square' ref='square' key={this.props.key} style={square_style}>
@@ -110,9 +100,7 @@ export default React.createClass({
     //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
-        //square is a reference to a DOMElement.
-        //let checker = React.findDOMNode(this.refs.checker);
-        //checker.append("<h2>Yeah!</h2>");
+        //let square = React.findDOMNode(this.refs.square);
         console.log("square updated");
     },
 

@@ -1,34 +1,23 @@
 import React from 'react';
 import Square from './square';      //load local class
 import Checker from './checker';    //load local class
-
 import randomColor from 'randomcolor';
 
 export default React.createClass({
 
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
 
-
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
     /*
     getDefaultProps() {
         return {
-            "newRound" 			  : true,
-            "shuffle"         : false,
-            "updateCheckers"  : false,
-            "complete"    		: false,
-            "boardIncrement"	: 0,
-            "directionArray"  : []
+
         };
     },
     */
 
     getInitialState() {
         return {
-            /*
-            "boardmap"    : [],
-            "checkermap"  : []
-            */
             directionArray : [],
             checkerArray : []     //which checkers are on each square
         };
@@ -78,9 +67,7 @@ export default React.createClass({
                       randomBackgroundColor: randomColor()
                   };
 
-                  //console.log(initial_checker_present.randomBackgroundColor);
                   temp_checker_array.push(initial_checker_present);
-                  //console.log("at square y = " + i + " x = " + j + " checkernextpos is: " + initial_checker_present.nextPosition.toString());
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
                     </Square>);
@@ -105,9 +92,6 @@ export default React.createClass({
 
                   let new_checkers_present = [];
 
-                  //console.log("i is: " + i);
-                  //console.log("j is: " + j);
-
                   let scoped_i = i;
                   let scoped_j = j;
                   //loop through the checkerArray to see which ones should be rendered on this square
@@ -120,15 +104,11 @@ export default React.createClass({
                           this.state.checkerArray[k].isUpdated = true;
                           this.state.checkerArray[k].currentPosition = [scoped_i, scoped_j];
                           this.state.checkerArray[k].nextPosition = [scoped_i+direction.shift[0], scoped_j+direction.shift[1]];
-
                           this.state.checkerArray[k].positionHistory.push([scoped_i,scoped_j]);
-                          //console.log("position history: " + this.state.checkerArray[k]);
 
                           new_checkers_present.push(this.state.checkerArray[k]);
                           console.log("match");
-
                       }
-
                   }
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={null} checkersPresent={new_checkers_present} >
@@ -143,21 +123,13 @@ export default React.createClass({
               checker_element.isUpdated = false;
               return checker_element;
           });
-
-
-
-      }
-      else {
+      } else {
          console.log("not doing anything to board render!!");
       }
-
-      //this.props.newRound = false;
 
       return <div className='board' ref='board' style={style}>
           {squares}
       </div>;
-
-
     },
 
 
@@ -187,14 +159,6 @@ export default React.createClass({
     shouldComponentUpdate (nextProps, nextState){
         //Access to the upcoming as well as the current props and state
         //console.log("this.props.newRound is: " + this.props.newRound);
-
-        if(this.props.newRound) {
-        	this.props.newRound = false;
-        	return true;
-        } else {
-        	return false;
-        }
-
     },
     */
 
@@ -207,12 +171,6 @@ export default React.createClass({
     //this method can be used to perform DOM operations after the data has been updated
 
     componentDidUpdate() {
-        //checker is a reference to a DOMElement.
-        //let checker = React.findDOMNode(this.refs.checker);
-        //this.props.boardIncrement++;
-        //console.log(this.props.boardIncrement.toString());
-        //change some of the params like "hidden" based on onboard or "color" based on incycle
-
         console.log("board updated");
     },
 
@@ -220,7 +178,6 @@ export default React.createClass({
     /*
     componentWillReceiveProps (nextProps) {
       console.log("called from change in props in board jsx");
-
       this.setState({
         // set something
       });
@@ -235,7 +192,6 @@ export default React.createClass({
         } else {
             return false;
         }
-
     },
     */
 
@@ -276,15 +232,7 @@ export default React.createClass({
         console.log("updating board state");
 
     }
-
-
     /*********  END STANDALONE CUSTOM METHODS ***********/
-    /*
-    boardIncrement(){
-        console.log("triggered boardIncrement in board.jsx");
 
-    }
-    */
+
 });
-
-//need to import directionality/overlay and key for each square.

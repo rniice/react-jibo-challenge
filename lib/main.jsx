@@ -18,11 +18,7 @@ let Main = React.createClass({
 
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
     getDefaultProps() {
-        return {
-
-
-        };
-
+        return null;
     },
 
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
@@ -36,7 +32,6 @@ let Main = React.createClass({
             reset: false
         };
     },
-
 
     render() {
         var react_element = (
@@ -78,7 +73,7 @@ let Main = React.createClass({
         let that = this;
         if(!refresh_interval){
             refresh_interval = setInterval(function() {
-                that.updateRender();
+                that.setState(that.state);    //call setState to force a re-render
             }, refresh_rate);
         } else{
             console.log("already playing");
@@ -141,14 +136,6 @@ let Main = React.createClass({
 
         //this._playSound();
     },
-
-    /*
-    getFancyState() {
-        //this.stop();
-        this.setState({shuffle: true});   //toggle on for an update
-        this.setState({shuffle: false});  //then immediately toggle off
-    },
-    */
 
     updateRender() {
         //this.props.board.boardIncrement +=1;

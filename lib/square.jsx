@@ -38,7 +38,7 @@ export default React.createClass({
             width: this.props.size,
             height: this.props.size,
             backgroundImage: this.props.direction.img_path,
-            backgroundColor: this.props.color,
+            backgroundColor: this.props.color
         };
 
         let present_checkers = this.props.checkersPresent;

@@ -72,6 +72,7 @@ export default React.createClass({
 
                   //console.log(initial_checker_present);
                   temp_checker_array.push(initial_checker_present);
+                  console.log("at square y = " + i + " x = " + j + " checkernextpos is: " + initial_checker_present.nextPosition);
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
                     </Square>);
@@ -224,16 +225,16 @@ export default React.createClass({
         let temp_rand = Math.floor(Math.random() * (max - min)) + min;
 
         if (temp_rand == 0) {
-            result = {name: 'right', img_path: `url("${'./resources/right.png'}")`, shift: [1,0]};    //right arrow
+            result = {name: 'right', img_path: `url("${'./resources/right.png'}")`, shift: [0,1]};    //right arrow
         }
         else if (temp_rand == 1) {
-            result = {name: 'up', img_path: `url("${'./resources/up.png'}")`, shift: [0,1]};       //up arrow
+            result = {name: 'up', img_path: `url("${'./resources/up.png'}")`, shift: [-1,0]};       //up arrow
         }
         else if (temp_rand == 2) {
-            result = {name: 'left', img_path: `url("${'./resources/left.png'}")`, shift: [-1,0]};    //left arrow
+            result = {name: 'left', img_path: `url("${'./resources/left.png'}")`, shift: [0,-1]};    //left arrow
         }
         else {
-            result = {name: 'down', img_path: `url("${'./resources/down.png'}")`, shift: [0,-1]};    //down arrow
+            result = {name: 'down', img_path: `url("${'./resources/down.png'}")`, shift: [1,0]};    //down arrow
         }
 
         //console.log(result);

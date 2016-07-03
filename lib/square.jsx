@@ -50,7 +50,6 @@ export default React.createClass({
             let checker_style = {
                 fontSize: '10',
                 color: '#0000FF',
-                //backgroundColor: '#99CCFF'
                 backgroundColor: present_checker.randomBackgroundColor
             };
 

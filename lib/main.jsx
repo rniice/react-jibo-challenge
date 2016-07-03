@@ -32,7 +32,8 @@ let Main = React.createClass({
             squareSize: this.props.squareSize,
             updateCheckers: false,  //calculate and run next move
             newRound: true,
-            shuffle: false
+            shuffle: false,
+            reset: false
         };
     },
 
@@ -93,6 +94,7 @@ let Main = React.createClass({
     reset() {
         console.log("Reset");
         this.stop();
+        this.setState({'updateCheckers': false, 'newRound': true, 'shuffle': false, 'reset': true});
         var initial_state = this.getInitialState();
         this.setSize(initial_state);
     },

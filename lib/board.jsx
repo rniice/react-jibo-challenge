@@ -49,7 +49,7 @@ export default React.createClass({
       console.log("newRound value: " + this.props.newRound);
       console.log("shuffle value: " + this.props.shuffle);
 
-      if(this.props.newRound || this.props.shuffle){
+      if(this.props.newRound || this.props.shuffle || this.props.reset){
           this.props.newRound = false;
           this.props.shuffle = false;
 
@@ -121,29 +121,13 @@ export default React.createClass({
                           this.state.checkerArray[k].currentPosition = [scoped_i, scoped_j];
                           this.state.checkerArray[k].nextPosition = [scoped_i+direction.shift[0], scoped_j+direction.shift[1]];
 
-                          //let position_history_update = current_checker.positionHistory.push([scoped_i,scoped_j]);
-                          //this.state.checkerArray[k].positionHistory = position_history_update;
-                          //console.log("position history: " + this.state.checkerArray[k].positionHistory);
+                          this.state.checkerArray[k].positionHistory.push([scoped_i,scoped_j]);
+                          //console.log("position history: " + this.state.checkerArray[k]);
 
                           new_checkers_present.push(this.state.checkerArray[k]);
                           console.log("match");
-                          //console.log("checkers at position: " + current_board_position);
 
-                          //then afterwards update the checkers at checkerArray position for the current, next, and positionHistory.
-                          //console.log(current_checker.positionHistory);
                       }
-
-                      /*
-                      let updated_checker_present = {
-                          name: current_checker.name,
-                          currentPosition: [i, j],
-                          nextPosition: [i+direction.shift[0],j+direction.shift[1]]
-                          //positionHistory: position_history_update
-                      }
-
-                      this.state.checkerArray[k] = updated_checker_present;
-                      */
-
 
                   }
 

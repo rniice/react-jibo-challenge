@@ -10,7 +10,7 @@ let content = document.getElementById('content');
 let board = document.getElementById('board');
 
 let refresh_interval = null;
-let refresh_rate     = 1000;    //2 sec
+let refresh_rate     = 200;    //200 ms
 
 
 //This is a React class. It's main methods are 'getInitialState', and 'render'.

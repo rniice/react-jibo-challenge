@@ -8,13 +8,11 @@ export default React.createClass({
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
 
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
-    /*
     getDefaultProps() {
         return {
-
+            advanced: true
         };
     },
-    */
 
     getInitialState() {
         return {
@@ -44,6 +42,8 @@ export default React.createClass({
 
           let temp_direction_array = [];
           let temp_checker_array = [];
+          let std_mode_checker_start = this._getCheckerStdRandomPosition(0, this.props.size);
+          console.log(std_mode_checker_start);
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
@@ -57,15 +57,30 @@ export default React.createClass({
 
                   temp_direction_array.push(direction);
 
-                  let initial_checker_present = {
-                      name: checker_number,
-                      currentPosition: [i, j],
-                      nextPosition: [i+direction.shift[0],j+direction.shift[1]],
-                      positionHistory: first_history,
-                      isUpdated: false,
-                      inCycle: false,
-                      randomBackgroundColor: randomColor()
-                  };
+                  //initialize value for initial checkers present
+                  let initial_checker_present = null;
+
+                  //check condition for standard or advanced mode
+                  if(this.props.advanced) {  //render checkers at all positions on board
+
+                      initial_checker_present = {
+                          name: checker_number,
+                          currentPosition: [i, j],
+                          nextPosition: [i+direction.shift[0],j+direction.shift[1]],
+                          positionHistory: first_history,
+                          isUpdated: false,
+                          inCycle: false,
+                          randomBackgroundColor: randomColor(),
+                          newCheckerStyles: true
+                      };
+
+
+                  } else {  //render checkers at all positions
+
+
+                  }
+
+
 
                   temp_checker_array.push(initial_checker_present);
 
@@ -109,6 +124,8 @@ export default React.createClass({
 
                           this.state.checkerArray[k].positionHistory.push([scoped_i,scoped_j]);
                           this.state.checkerArray[k].positionHistory.slice(-max_position_history);  //limit the length of the position array
+
+                          this.state.checkerArray[k].newCheckerStyles=false;
 
                           new_checkers_present.push(this.state.checkerArray[k]);
                           //console.log("match");
@@ -204,6 +221,15 @@ export default React.createClass({
 
 
     /*********  STANDALONE CUSTOM METHODS ***********/
+
+    _getCheckerStdRandomPosition(min, max){
+        let j_value = Math.floor(Math.random() * (max - min)) + min;
+        let i_value = Math.floor(Math.random() * (max - min)) + min;
+
+        let start_position = [j_value, i_value];
+
+        return start_position;
+    },
 
     //returns coordinate shift [+x, +y]
     _getSquareDirection() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import randomColor from 'randomcolor';
 
 //opted to manage checker properties from board class
 
@@ -19,16 +20,23 @@ export default React.createClass({
 
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
     getInitialState() {
-        return null;
+        return {
+            inCycle: false
+        };
     },
 
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
         let checker_style = this.props.style;
 
+        if(this.props.newCheckerStyles){
+            this.state.inCycle=false;
+        }
+
         //if checker is in cycle, set the style accordingly
-        if(this.props.inCycle){
-          checker_style.backgroundColor = '#FFFF66';
+        if(this.state.inCycle){
+            //checker_style.backgroundColor = randomColor();
+            checker_style.fontSize = '20';
         }
         //if checker is not in a cycle, check to see if it is now in a cycle
         else{
@@ -37,7 +45,7 @@ export default React.createClass({
             console.log(cycle);
 
             if(cycle) {
-                this.props.inCycle = true;
+                this.state.inCycle = true;
             }
 
         }

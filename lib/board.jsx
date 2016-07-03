@@ -33,9 +33,6 @@ export default React.createClass({
       let key = 0;
       let square_number = 0;
 
-      console.log("newRound value: " + this.props.newRound);
-      console.log("shuffle value: " + this.props.shuffle);
-
       if(this.props.newRound || this.props.shuffle || this.props.reset){
           this.props.newRound = false;
           this.props.shuffle = false;
@@ -43,7 +40,6 @@ export default React.createClass({
           let temp_direction_array = [];
           let temp_checker_array = [];
           let std_mode_checker_start = this._getCheckerStdRandomPosition(0, this.props.size);
-          console.log(std_mode_checker_start);
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {

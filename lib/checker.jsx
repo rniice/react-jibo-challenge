@@ -1,10 +1,19 @@
 import React from 'react';
 import randomColor from 'randomcolor';
 
-//opted to manage checker properties from board class
-
+//modify the array class to contain a unique function
+Array.prototype.unique = function() {
+    var a = [], l = this.length;
+    for(var i=0; i<l; i++) {
+      for(var j=i+1; j<l; j++)
+            if (this[i] === this[j]) j = ++i;
+      a.push(this[i]);
+    }
+    return a;
+};
 
 //this exports a reference to a React class as the default export
+//opted to manage checker properties from board class
 export default React.createClass({
 
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
@@ -46,6 +55,7 @@ export default React.createClass({
 
             if(cycle) {
                 this.state.inCycle = true;
+                checker_style.fontSize = '20';
             }
 
         }
@@ -131,20 +141,16 @@ export default React.createClass({
     /*THE CHECKCYCLE ALGORITHM FUNCTIONS BY SEEING IF HISTORY CONTAINS DUPLICATE
     POSITION IN THE HISTORY ARRAY FOR THE COMPONENT*/
     _checkCycle(history_array){
-        let array_strings_sorted = history_array.map(function(position){
+        let array_strings = history_array.map(function(position){
             return position.toString();
-        }).sort();
+        });
 
-        for (let i=0; i<array_strings_sorted.length; i++){
-            let current_value = array_strings_sorted[i];
-
-            if(array_strings_sorted.slice(i+1).indexOf(current_value)>-1) {
-                return true;
-            }
+        if (array_strings.length == array_strings.unique().length){
+            return false;
+        } else {  //we must have a redundant position point
+            return true;
         }
 
-        //if no duplicates were found, return false
-        return false;
     }
 
     /*********  END STANDALONE CUSTOM METHODS ***********/

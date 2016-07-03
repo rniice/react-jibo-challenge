@@ -60,6 +60,8 @@ export default React.createClass({
                   let color = key++ % 2 == 0 ? '#333333' : '#BBBBBB';
                   let direction = this._getSquareDirection();
                   let checker_number = square_number;
+                  let first_history = [];
+                  first_history.push([i, j]);
 
                   temp_direction_array.push(direction);
 
@@ -67,12 +69,12 @@ export default React.createClass({
                       name: checker_number,
                       currentPosition: [i, j],
                       nextPosition: [i+direction.shift[0],j+direction.shift[1]],
-                      positionHistory: [i, j]
+                      positionHistory: first_history
                   };
 
                   //console.log(initial_checker_present);
                   temp_checker_array.push(initial_checker_present);
-                  console.log("at square y = " + i + " x = " + j + " checkernextpos is: " + initial_checker_present.nextPosition);
+                  //console.log("at square y = " + i + " x = " + j + " checkernextpos is: " + initial_checker_present.nextPosition.toString());
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
                     </Square>);
@@ -97,6 +99,8 @@ export default React.createClass({
 
                   let new_checkers_present = [];
 
+                  console.log("i is: " + i);
+                  console.log("j is: " + j);
                   //loop through the checkerArray to see which ones should be rendered on this square
                   for(let k=0; k < this.state.checkerArray.length; k++){
                       let current_checker = this.state.checkerArray[k];
@@ -106,7 +110,24 @@ export default React.createClass({
                           new_checkers_present.push(current_checker);
                           console.log("match");
                           //console.log("checkers at position: " + current_board_position);
+
+                          //then afterwards update the checkers at checkerArray position for the current, next, and positionHistory.
+                          //let position_history_update = current_checker.positionHistory.push([i,j]);
+                          console.log(current_checker.positionHistory);
                       }
+
+                      /*
+                      let updated_checker_present = {
+                          name: current_checker.name,
+                          currentPosition: [i, j],
+                          nextPosition: [i+direction.shift[0],j+direction.shift[1]]
+                          //positionHistory: position_history_update
+                      }
+
+                      this.state.checkerArray[k] = updated_checker_present;
+                      */
+
+
                   }
 
                   squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={null} checkersPresent={new_checkers_present} >

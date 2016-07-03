@@ -32,10 +32,6 @@ export default React.createClass({
         };
     },
 
-
-    //make a function that render can call to determine what properties get updated
-
-
     render() {
 
 	    let size = (this.props.squareSize + 2) * this.props.size;
@@ -67,14 +63,17 @@ export default React.createClass({
 
                   temp_direction_array.push(direction);
 
-                  temp_checker_array.push({
+                  let initial_checker_present = {
                       name: checker_number,
                       currentPosition: [i, j],
                       nextPosition: [i+direction.shift[0],j+direction.shift[1]],
                       positionHistory: [i, j]
-                  });
+                  };
 
-                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} >
+                  //console.log(initial_checker_present);
+                  temp_checker_array.push(initial_checker_present);
+
+                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
                     </Square>);
 
                   square_number++;
@@ -83,8 +82,6 @@ export default React.createClass({
 
           this.state.directionArray = temp_direction_array;    //set new direction array
           this.state.checkerArray = temp_checker_array;        //set new checker array
-
-          //console.log(this.state.directionArray);
 
       } else if (this.props.updateCheckers){
           console.log("in updateCheckers mode");
@@ -97,27 +94,22 @@ export default React.createClass({
                   let direction = this.state.directionArray[square_number];
                   let current_board_position = [i, j];
 
-                  //console.log("current board position:" + current_board_position.toString());
+                  let new_checkers_present = [];
+
                   //loop through the checkerArray to see which ones should be rendered on this square
                   for(let k=0; k < this.state.checkerArray.length; k++){
                       let current_checker = this.state.checkerArray[k];
-                      let current_checker_position = current_checker.currentPosition;
                       let current_checker_next_position = current_checker.nextPosition;
-                      //console.log("current board position:" + current_board_position.toString());
-                      console.log("current checker position: " + current_checker_position);
-                      //console.log("current checker next position: " + current_checker_next_position);
 
                       if(current_checker_next_position.toString() == current_board_position.toString()){
+                          new_checkers_present.push(current_checker);
                           console.log("match");
                           //console.log("checkers at position: " + current_board_position);
-                          squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={current_checker.name}>
-                            </Square>);
-                      } else {
-                          squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={current_checker.name}>
-                            </Square>);
                       }
-
                   }
+
+                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={null} checkersPresent={new_checkers_present} >
+                    </Square>);
 
                   square_number++;
               }

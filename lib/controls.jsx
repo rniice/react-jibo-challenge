@@ -11,7 +11,6 @@ export default React.createClass({
 
     onPlay() {
         this.props.control.play();
-        //this.props.control.boardIncrementMain();
     },
 
 

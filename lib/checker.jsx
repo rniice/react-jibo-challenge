@@ -23,21 +23,23 @@ export default React.createClass({
     */
 
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
-    /*
+
     getInitialState() {
+        /*
         return {
             "currentPosition" : ['default'],
             "nextPosition"    : ['default'],
             "positionHistory" : [],
         };
+        */
     },
-    */
+
 
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
         let checker_style = this.props.style;
 
-        var react_element = (
+        let react_element = (
               <p className = 'checker' ref='checker' style={checker_style}>{this.props.checkerNumber}</p>
             );
 

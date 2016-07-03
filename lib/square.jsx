@@ -2,7 +2,6 @@ import React from 'react';
 //import Sound from 'react-sound';
 import Checker from './checker';    //load local class
 
-
 //this exports a reference to a React class as the default export
 export default React.createClass({
 
@@ -33,6 +32,7 @@ export default React.createClass({
     render() {
 
         let checkers = [];
+        let key = 0;
 
         let square_style = {
             width: this.props.size,
@@ -41,18 +41,30 @@ export default React.createClass({
             backgroundColor: this.props.color,
         };
 
+        let present_checkers = this.props.checkersPresent;
+
         let checker_style = {
             fontSize: '20',
             color: '#0000FF'
         };
 
+        //for each present checker on the square add a new checker using map function
+        checkers = present_checkers.map(function(present_checker){
+            key++;
+            return (<Checker style={checker_style} key={key} checkerNumber={present_checker.name}/>);
+
+        });
+
         //calculate which checkers are on the square here then if multiple pass a [].map for each checker to generate
-        checkers.push(<Checker style={checker_style} checkerNumber={this.props.checkerNumber}/>);
+        //checkers.push(<Checker style={checker_style} key={'woof'} checkerNumber={this.props.checkerNumber}/>);
 
         //To set a div's class in React you must use the 'className' attribute, instead of the
         //usual 'class' attribute. This is because 'class' is a reserved keyword in ECMAScript 6.
+
+        //console.log(this.props.key);
+
         var react_element = (
-            <div className ='square' ref='square' style={square_style}>
+            <div className ='square' ref='square' key={this.props.key} style={square_style}>
               {checkers}
             </div>);
 

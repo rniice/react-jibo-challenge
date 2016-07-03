@@ -32,6 +32,7 @@ export default React.createClass({
     },
 
     onBoardWildMode() {
+        alert("get ready... 0_o");
         this.props.control.toggleWildMode();
     },
 

@@ -8,11 +8,13 @@ export default React.createClass({
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
 
     //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
+    /*
     getDefaultProps() {
         return {
             advanced: true
         };
     },
+    */
 
     getInitialState() {
         return {

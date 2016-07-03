@@ -29,7 +29,8 @@ let Main = React.createClass({
             updateCheckers: false,  //calculate and run next move
             newRound: true,
             shuffle: false,
-            reset: false
+            reset: false,
+            advanced: false
         };
     },
 
@@ -46,6 +47,7 @@ let Main = React.createClass({
                     checkerSize={this.state.checkerSize}
                     newRound={this.state.newRound}
                     shuffle={this.state.shuffle}
+                    advanced={this.state.advanced}
                     updateCheckers={this.state.updateCheckers}/>
             </div>);
 
@@ -89,9 +91,14 @@ let Main = React.createClass({
     reset() {
         console.log("Reset");
         this.stop();
-        this.setState({'updateCheckers': false, 'newRound': true, 'shuffle': false, 'reset': true});
+        this.setState({'updateCheckers': false, 'newRound': true, 'shuffle': false, 'reset': true, 'advanced': false});
         var initial_state = this.getInitialState();
         this.setSize(initial_state);
+    },
+
+    toggleWildMode(){
+        this.setState({'advanced': true});   //toggle on for an update
+
     },
 
     setSize(args) {

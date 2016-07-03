@@ -22,14 +22,24 @@ export default React.createClass({
         return null;
     },
 
-
     //rendering function that is called each time component gets updated, returns jsx xml/html element
     render() {
         let checker_style = this.props.style;
-        let checker_inCycle = this.props.inCycle;
 
-        if(checker_inCycle){
+        //if checker is in cycle, set the style accordingly
+        if(this.props.inCycle){
           checker_style.backgroundColor = '#FFFF66';
+        }
+        //if checker is not in a cycle, check to see if it is now in a cycle
+        else{
+            let cycle = this._checkCycle(this.props.positionHistory);          //checks if checker has entered a cycle, and sets style if it is
+
+            console.log(cycle);
+
+            if(cycle) {
+                this.props.inCycle = true;
+            }
+
         }
 
         let react_element = (
@@ -45,8 +55,8 @@ export default React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        let checker = React.findDOMNode(this.refs.checker);
-        //console.log("checker added");
+        //let checker = React.findDOMNode(this.refs.checker);
+        console.log("checker added");
     },
 
 
@@ -110,6 +120,24 @@ export default React.createClass({
 
     /*********  STANDALONE CUSTOM METHODS ***********/
 
+    /*THE CHECKCYCLE ALGORITHM FUNCTIONS BY SEEING IF HISTORY CONTAINS DUPLICATE
+    POSITION IN THE HISTORY ARRAY FOR THE COMPONENT*/
+    _checkCycle(history_array){
+        let array_strings_sorted = history_array.map(function(position){
+            return position.toString();
+        }).sort();
+
+        for (let i=0; i<array_strings_sorted.length; i++){
+            let current_value = array_strings_sorted[i];
+
+            if(array_strings_sorted.slice(i+1).indexOf(current_value)>-1) {
+                return true;
+            }
+        }
+
+        //if no duplicates were found, return false
+        return false;
+    }
 
     /*********  END STANDALONE CUSTOM METHODS ***********/
 

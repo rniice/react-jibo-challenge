@@ -100,14 +100,18 @@ export default React.createClass({
                       let current_checker_next_position = current_checker.nextPosition;
                       let current_checker_isUpdated = current_checker.isUpdated;
 
+                      let max_position_history = 2*(this.props.size)*(this.props.size);
+
                       if((current_checker_next_position.toString() == current_board_position.toString() ) && (!current_checker_isUpdated) ){
                           this.state.checkerArray[k].isUpdated = true;
                           this.state.checkerArray[k].currentPosition = [scoped_i, scoped_j];
                           this.state.checkerArray[k].nextPosition = [scoped_i+direction.shift[0], scoped_j+direction.shift[1]];
+
                           this.state.checkerArray[k].positionHistory.push([scoped_i,scoped_j]);
+                          this.state.checkerArray[k].positionHistory.slice(-max_position_history);  //limit the length of the position array
 
                           new_checkers_present.push(this.state.checkerArray[k]);
-                          console.log("match");
+                          //console.log("match");
                       }
                   }
 

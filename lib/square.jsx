@@ -51,7 +51,7 @@ export default React.createClass({
                 backgroundColor: present_checker.randomBackgroundColor
             };
 
-            return (<Checker style={checker_style} key={key} inCycle={present_checker.inCycle} checkerNumber={present_checker.name}/>);
+            return (<Checker style={checker_style} key={key} positionHistory={present_checker.positionHistory} inCycle={present_checker.inCycle} checkerNumber={present_checker.name}/>);
         });
 
         var react_element = (

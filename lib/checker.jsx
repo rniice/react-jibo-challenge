@@ -1,5 +1,8 @@
 import React from 'react';
 
+//opted to manage checker properties from board class
+
+
 //this exports a reference to a React class as the default export
 export default React.createClass({
 
@@ -9,27 +12,16 @@ export default React.createClass({
     /*
     getDefaultProps() {
         return {
-            "checkerNumber"   : 0,
-            "currentPosition" : ['default'],
-            "nextPosition"    : ['default'],
-            "color"           : "#FF0000",
-            "emitSound"       : "soundfileload.mp3",
-            "positionHistory" : [],
-            "offboard"        : false,
-            "inCycle"         : false
-        };
 
+        };
     },
     */
 
     //getInitialState method enables to set the initial state value, that is accessible inside the component via this.state.{blah}
-
     getInitialState() {
         /*
         return {
-            "currentPosition" : ['default'],
-            "nextPosition"    : ['default'],
-            "positionHistory" : [],
+
         };
         */
         return null;

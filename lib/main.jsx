@@ -100,9 +100,10 @@ let Main = React.createClass({
     },
 
     setSize(args) {
-        //first, make sure we clear any running program
-        clearInterval(refresh_interval);
-        refresh_interval = null;
+          //first, make sure we clear any running program
+          clearInterval(refresh_interval);
+          refresh_interval = null;
+          this.setState({'updateCheckers': false, 'newRound': true, 'shuffle': false, 'reset': true});
 
           let new_size = null;
           let new_square_size = null;

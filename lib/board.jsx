@@ -69,7 +69,8 @@ export default React.createClass({
                       name: checker_number,
                       currentPosition: [i, j],
                       nextPosition: [i+direction.shift[0],j+direction.shift[1]],
-                      positionHistory: first_history
+                      //positionHistory: first_history,
+                      isUpdated: false
                   };
 
                   //console.log(initial_checker_present);
@@ -101,19 +102,30 @@ export default React.createClass({
 
                   console.log("i is: " + i);
                   console.log("j is: " + j);
+
+                  let scoped_i = i;
+                  let scoped_j = j;
                   //loop through the checkerArray to see which ones should be rendered on this square
                   for(let k=0; k < this.state.checkerArray.length; k++){
                       let current_checker = this.state.checkerArray[k];
                       let current_checker_next_position = current_checker.nextPosition;
+                      let current_checker_isUpdated = current_checker.isUpdated;
 
-                      if(current_checker_next_position.toString() == current_board_position.toString()){
-                          new_checkers_present.push(current_checker);
+                      if((current_checker_next_position.toString() == current_board_position.toString() ) && (!current_checker_isUpdated) ){
+                          this.state.checkerArray[k].isUpdated = true;
+                          this.state.checkerArray[k].currentPosition = [scoped_i, scoped_j];
+                          this.state.checkerArray[k].nextPosition = [scoped_i+direction.shift[0], scoped_j+direction.shift[1]];
+
+                          //let position_history_update = current_checker.positionHistory.push([scoped_i,scoped_j]);
+                          //this.state.checkerArray[k].positionHistory = position_history_update;
+                          //console.log("position history: " + this.state.checkerArray[k].positionHistory);
+
+                          new_checkers_present.push(this.state.checkerArray[k]);
                           console.log("match");
                           //console.log("checkers at position: " + current_board_position);
 
                           //then afterwards update the checkers at checkerArray position for the current, next, and positionHistory.
-                          //let position_history_update = current_checker.positionHistory.push([i,j]);
-                          console.log(current_checker.positionHistory);
+                          //console.log(current_checker.positionHistory);
                       }
 
                       /*
@@ -136,6 +148,14 @@ export default React.createClass({
                   square_number++;
               }
           }
+
+          //after full board is refreshed, now reset the isUpdated property for each checker
+          this.state.checkerArray = this.state.checkerArray.map(function(checker_element) {
+              checker_element.isUpdated = false;
+              return checker_element;
+          });
+
+
 
       }
       else {

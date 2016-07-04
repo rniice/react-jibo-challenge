@@ -1,17 +1,6 @@
 import React from 'react';
 import randomColor from 'randomcolor';
 
-//modify the array class to contain a unique function
-Array.prototype.unique = function() {
-    var a = [], l = this.length;
-    for(var i=0; i<l; i++) {
-      for(var j=i+1; j<l; j++)
-            if (this[i] === this[j]) j = ++i;
-      a.push(this[i]);
-    }
-    return a;
-};
-
 //this exports a reference to a React class as the default export
 //opted to manage checker properties from board class
 export default React.createClass({
@@ -38,13 +27,15 @@ export default React.createClass({
     render() {
         let checker_style = this.props.style;
 
+        //ensure that on reset that the inCycle state variable gets reset
         if(this.props.newCheckerStyles){
             this.state.inCycle=false;
         }
 
         //if checker is in cycle, set the style accordingly
         if(this.state.inCycle){
-            //checker_style.backgroundColor = randomColor();
+            checker_style.borderWidth = '2';
+            checker_style.borderColor = '#33AAFF';
             checker_style.fontSize = '20';
         }
         //if checker is not in a cycle, check to see if it is now in a cycle
@@ -55,6 +46,8 @@ export default React.createClass({
 
             if(cycle) {
                 this.state.inCycle = true;
+                checker_style.borderWidth = '2';
+                checker_style.borderColor = '#33AAFF';
                 checker_style.fontSize = '20';
             }
 
@@ -145,12 +138,16 @@ export default React.createClass({
             return position.toString();
         });
 
-        if (array_strings.length == array_strings.unique().length){
+        if (array_strings.length === array_strings.filter(filterUnique).length){
             return false;
         } else {  //we must have a redundant position point
             return true;
         }
 
+        //returns true only when position of value is current value position
+        function filterUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
     }
 
     /*********  END STANDALONE CUSTOM METHODS ***********/

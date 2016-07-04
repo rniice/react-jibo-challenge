@@ -155,7 +155,7 @@ export default React.createClass({
               }
           }
 
-          //after full board is refreshed, now reset the isUpdated property for each checker
+          //after full board is refreshed, now reset the isUpdated property for each checker prior to render
           this.state.checkerArray = this.state.checkerArray.map(function(checker_element) {
               checker_element.isUpdated = false;
               return checker_element;

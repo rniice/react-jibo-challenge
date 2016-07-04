@@ -97,8 +97,8 @@ let Main = React.createClass({
     },
 
     toggleWildMode(){
+        this.reset();
         this.setState({'advanced': true});   //toggle on for an update
-
     },
 
     setSize(args) {
@@ -140,7 +140,6 @@ let Main = React.createClass({
         //this.stop();
         this.setState({shuffle: true});   //toggle on for an update
         this.setState({shuffle: false});  //then immediately toggle off
-
         //this._playSound();
     },
 

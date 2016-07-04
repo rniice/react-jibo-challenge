@@ -96,7 +96,10 @@ let Main = React.createClass({
 
     toggleWildMode(){
         //this.reset();
-        this.setState({'advanced': true});   //toggle on for an update
+        this.stop();
+        this.setState({'updateCheckers': false, 'newRound': true, 'shuffle': false, 'reset': false, 'advanced': true});
+
+        //this.setState({'advanced': true});   //toggle on for an update
     },
 
     setSize(args) {

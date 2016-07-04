@@ -49,6 +49,7 @@ export default React.createClass({
 
                   //initialize value for initial checkers present
                   let initial_checker_present = null;
+                  let sounds = [];  //array stores jsx elements for checkers falling off the board
 
                   //check condition for standard or advanced mode
                   if(this.props.advanced) {  //render checkers at all positions on board
@@ -64,10 +65,24 @@ export default React.createClass({
                           newCheckerStyles: true
                       };
 
+                      //check to see if checker falls off the board (only check if at perimeter board squares)
+                      //if it does add to the falling sound array since next render it will fall off
+                      let max_board_index = this.props.size - 1;
+
+                      if( i==0 || j==0 ||  i==max_board_index || j==max_board_index ) {
+                          sounds = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
+                      } else {
+                          sounds = [];
+                      }
+
                       temp_checker_array.push(initial_checker_present);
 
-                      squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
-                        </Square>);
+                      squares.push(
+                            <div>
+                                <Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} > </Square>
+                                {sounds}
+                            </div>
+                      );
 
                   } else if (std_mode_checker_start[0]==j && std_mode_checker_start[1]==i ){  //render checkers only at random selected position
 
@@ -82,16 +97,32 @@ export default React.createClass({
                           newCheckerStyles: true
                       };
 
+                      //check to see if checker falls off the board (only check if at perimeter board squares)
+                      //if it does add to the falling sound array since next render it will fall off
+                      let max_board_index = this.props.size - 1;
+
+                      if( i==0 || j==0 ||  i==max_board_index || j==max_board_index ) {
+                          sounds = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
+                      } else {
+                          sounds = [];
+                      }
+
                       temp_checker_array.push(initial_checker_present);
 
-                      squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} >
-                        </Square>);
+                      squares.push(
+                            <div>
+                                <Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[initial_checker_present]} > </Square>
+                                {sounds}
+                            </div>
+                      );
 
                   } else {  //just render a standard empty square
 
-                    squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[]} >
-                      </Square>);
-
+                    squares.push(
+                        <div>
+                            <Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={checker_number} checkersPresent={[]} ></Square>
+                        </div>
+                    );
                       //console.log("we have a problem in standard mode");
                   }
 

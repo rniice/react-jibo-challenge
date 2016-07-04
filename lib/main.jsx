@@ -2,15 +2,13 @@
 import React from 'react';
 import Board from './board';
 import Controls from './controls';
-//import IPod from './node_modules/ipod/index.js';
-//var Ipod = require('ipod');
 
 //get the content DOMElemet create in index.html
 let content = document.getElementById('content');
 let board = document.getElementById('board');
 
 let refresh_interval = null;
-let refresh_rate     = 200;    //200 ms
+let refresh_rate     = 500;    //200 ms
 
 
 //This is a React class. It's main methods are 'getInitialState', and 'render'.
@@ -97,7 +95,7 @@ let Main = React.createClass({
     },
 
     toggleWildMode(){
-        this.reset();
+        //this.reset();
         this.setState({'advanced': true});   //toggle on for an update
     },
 
@@ -119,8 +117,8 @@ let Main = React.createClass({
           }
           else if(this.state.size <= 20){
               new_size = this.state.size + 2;
-              new_square_size = this.state.squareSize - 4;
-              new_checker_size = this.state.checkerSize - 4;
+              new_square_size = this.state.squareSize + 4;
+              new_checker_size = this.state.checkerSize + 4;
           } else {
               new_size = 5,
               new_square_size = 80,
@@ -146,27 +144,8 @@ let Main = React.createClass({
     updateRender() {
         //this.props.board.boardIncrement +=1;
         console.log("updating render animation in mainjsx");
-
         this.setState(this.state);
-        //this.setState(this.state);
-        //console.log(this.props.board.boardIncrement.toString());
     }
-
-/*
-    _playSound() {
-        // create ipod instance
-        var ipod = new IPod('./resources/unscrew_lightbulb-mike-koenig.mp3');
-
-        // play now and callback when playend
-        ipod.play();
-
-        setTimeout(function(){
-        	// stop playing
-        	ipod.stop();
-        },500);
-
-    }
-*/
 
 
     /*********  END STANDALONE CUSTOM METHODS ***********/

@@ -7,15 +7,6 @@ export default React.createClass({
 
     /*********  BEGIN COMPONENT INITIALIZATION ***********/
 
-    //getDefaultProps can be used to define any default props which can be accessed via this.props.{blah}
-    /*
-    getDefaultProps() {
-        return {
-            advanced: true
-        };
-    },
-    */
-
     getInitialState() {
         return {
             directionArray : [],
@@ -187,50 +178,11 @@ export default React.createClass({
 
     /*********  BEGIN STATE CHANGE METHODS ************/
 
-    //state changes will triggera number of methods
-
-    /*always called before render() method and checks
-      this.state or this.props to determine if render() is to be called*/
-
-    /*
-    shouldComponentUpdate (nextProps, nextState){
-        //Access to the upcoming as well as the current props and state
-        //console.log("this.props.newRound is: " + this.props.newRound);
-    },
-    */
-
-    //gets called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed
-    componentWillUpdate (nextProps, nextState){
-        // perform any preparations for an upcoming update
-    },
-
     //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
-
     componentDidUpdate() {
         console.log("board updated");
     },
-
-    //gets called ONLY when there is a change in props (not a change in this.state)
-    /*
-    componentWillReceiveProps (nextProps) {
-      console.log("called from change in props in board jsx");
-      this.setState({
-        // set something
-      });
-    },
-    */
-
-    //return true under certain conditions e.g. if the checker goes off board and to be deleted
-    /*
-    componentWillUnmount (nextProps, nextState){
-        if(condition){
-            return true;
-        } else {
-            return false;
-        }
-    },
-    */
 
     /*********  END STATE CHANGE METHODS ************/
 
@@ -271,13 +223,8 @@ export default React.createClass({
 
         //console.log(result);
         return result;
-    },
-
-    updateBoardState() {
-        //this.props.boardIncrement++;
-        console.log("updating board state");
-
     }
+
     /*********  END STANDALONE CUSTOM METHODS ***********/
 
 

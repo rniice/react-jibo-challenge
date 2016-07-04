@@ -40,7 +40,7 @@ export default React.createClass({
                 checker_style.borderWidth = '2';
                 checker_style.borderColor = '#33AAFF';
                 checker_style.fontSize = '20';
-
+                console.log("checker in a cycle!");
                 //push a sound component into the rendered react element
                 sounds.push(<Sound playStatus={'PLAYING'} url={`resources/Heal8-Bit.ogg`} />);
             }
@@ -50,7 +50,7 @@ export default React.createClass({
 
         let react_element = (
               <div>
-                  <p className = 'checker' ref='checker' style={checker_style}>{this.props.checkerNumber}</p>
+                  <p className = 'checker' ref='checker' key={this.props.key} style={checker_style}>{this.props.checkerNumber}</p>
                   {sounds}
               </div>
         );
@@ -65,7 +65,7 @@ export default React.createClass({
      */
     componentDidMount() {
         //let checker = React.findDOMNode(this.refs.checker);
-        console.log("checker added");
+        //console.log("checker added");
     },
 
 
@@ -77,9 +77,8 @@ export default React.createClass({
     //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
-        //checker is a reference to a DOMElement.
         //let checker = React.findDOMNode(this.refs.checker);
-        console.log("checker updated");
+        //console.log("checker updated");
     },
 
     /*********  END STATE CHANGE METHODS ************/

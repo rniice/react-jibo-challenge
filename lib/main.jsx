@@ -59,7 +59,7 @@ let Main = React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        console.log("main component added");
+        //console.log("main component added");
     },
 
 
@@ -139,14 +139,7 @@ let Main = React.createClass({
         this.setState({shuffle: true});   //toggle on for an update
         this.setState({shuffle: false});  //then immediately toggle off
         //this._playSound();
-    },
-
-    updateRender() {
-        //this.props.board.boardIncrement +=1;
-        console.log("updating render animation in mainjsx");
-        this.setState(this.state);
     }
-
 
     /*********  END STANDALONE CUSTOM METHODS ***********/
 

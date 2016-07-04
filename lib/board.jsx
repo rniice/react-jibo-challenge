@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './square';      //load local class
 import Checker from './checker';    //load local class
+import Sound from 'react-sound';
 import randomColor from 'randomcolor';
 
 export default React.createClass({
@@ -102,8 +103,6 @@ export default React.createClass({
           this.state.checkerArray = temp_checker_array;        //set new checker array
 
       } else if (this.props.updateCheckers){
-          console.log("in updateCheckers mode");
-          //console.log(this.state.directionArray);
 
           for(let i = 0; i < this.props.size; i++) {
               for(let j = 0; j < this.props.size; j++) {
@@ -113,6 +112,8 @@ export default React.createClass({
                   let current_board_position = [i, j];
 
                   let new_checkers_present = [];
+                  let sounds = [];  //array stores jsx elements for checkers falling off the board
+
 
                   let scoped_i = i;
                   let scoped_j = j;
@@ -128,19 +129,30 @@ export default React.createClass({
                           this.state.checkerArray[k].isUpdated = true;
                           this.state.checkerArray[k].currentPosition = [scoped_i, scoped_j];
                           this.state.checkerArray[k].nextPosition = [scoped_i+direction.shift[0], scoped_j+direction.shift[1]];
-
                           this.state.checkerArray[k].positionHistory.push([scoped_i,scoped_j]);
                           this.state.checkerArray[k].positionHistory.slice(-max_position_history);  //limit the length of the position array
-
                           this.state.checkerArray[k].newCheckerStyles=false;
 
+                          //check to see if checker falls off the board (only check if at perimeter board squares)
+                          //if it does add to the falling sound array since next render it will fall off
+                          let max_board_index = this.props.size - 1;
+
+                          if( scoped_i==0 || scoped_j==0 ||  scoped_i==max_board_index || scoped_j==max_board_index ) {
+                              sounds = this._soundCheckForCheckerOffBoard(this.state.checkerArray[k].nextPosition, max_board_index);
+                          } else {
+                              sounds = [];
+                          }
+
                           new_checkers_present.push(this.state.checkerArray[k]);
-                          //console.log("match");
                       }
                   }
 
-                  squares.push(<Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={null} checkersPresent={new_checkers_present} >
-                    </Square>);
+                  squares.push(
+                      <div>
+                          <Square key={key} size={this.props.squareSize} color={color} direction={direction} checkerNumber={null} checkersPresent={new_checkers_present} ></Square>
+                          {sounds}
+                      </div>
+                  );
 
                   square_number++;
               }
@@ -167,9 +179,8 @@ export default React.createClass({
      * using reacts ref mechanism.
      */
     componentDidMount() {
-        //square is a reference to a DOMElement.
         let board = React.findDOMNode(this.refs.board);
-        console.log("board added");
+        //console.log("board added");
     },
 
 
@@ -181,14 +192,27 @@ export default React.createClass({
     //gets called after the render method. Similar to the componentDidMount,
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
-        console.log("board updated");
+        //console.log("board updated");
     },
 
     /*********  END STATE CHANGE METHODS ************/
 
 
-
     /*********  STANDALONE CUSTOM METHODS ***********/
+
+    //returns a jsx element to render a sound if it determines a checker is moving out of context on next update
+    _soundCheckForCheckerOffBoard(checker_next_position, max_board_index){
+        let checker_next_x = checker_next_position[0];
+        let checker_next_y = checker_next_position[1];
+
+        if(checker_next_x < 0 || checker_next_x > max_board_index || checker_next_y < 0 || checker_next_y > max_board_index ) {
+            console.log("checker just fell off the board!");
+            return (<Sound playStatus={'PLAYING'} url={`resources/Oddbounce.ogg`} />);
+        } else {
+            return [];  //return empty array
+        }
+    },
+
 
     _getCheckerStdRandomPosition(min, max){
         let j_value = Math.floor(Math.random() * (max - min)) + min;

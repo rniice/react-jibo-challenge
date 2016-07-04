@@ -62,7 +62,7 @@ export default React.createClass({
     //this method can be used to perform DOM operations after the data has been updated
     componentDidUpdate() {
         //let square = React.findDOMNode(this.refs.square);
-        console.log("square updated");
+        //console.log("square updated");
     }
 
 });

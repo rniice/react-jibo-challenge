@@ -70,9 +70,8 @@ export default React.createClass({
                       let max_board_index = this.props.size - 1;
 
                       if( i==0 || j==0 ||  i==max_board_index || j==max_board_index ) {
-                          sounds = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
-                      } else {
-                          sounds = [];
+                          let sound_component = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
+                          sounds.push(sound_component);
                       }
 
                       temp_checker_array.push(initial_checker_present);
@@ -102,9 +101,8 @@ export default React.createClass({
                       let max_board_index = this.props.size - 1;
 
                       if( i==0 || j==0 ||  i==max_board_index || j==max_board_index ) {
-                          sounds = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
-                      } else {
-                          sounds = [];
+                          let sound_component = this._soundCheckForCheckerOffBoard(initial_checker_present.nextPosition, max_board_index);
+                          sounds.push(sound_component);
                       }
 
                       temp_checker_array.push(initial_checker_present);
@@ -145,7 +143,6 @@ export default React.createClass({
                   let new_checkers_present = [];
                   let sounds = [];  //array stores jsx elements for checkers falling off the board
 
-
                   let scoped_i = i;
                   let scoped_j = j;
                   //loop through the checkerArray to see which ones should be rendered on this square
@@ -169,9 +166,8 @@ export default React.createClass({
                           let max_board_index = this.props.size - 1;
 
                           if( scoped_i==0 || scoped_j==0 ||  scoped_i==max_board_index || scoped_j==max_board_index ) {
-                              sounds = this._soundCheckForCheckerOffBoard(this.state.checkerArray[k].nextPosition, max_board_index);
-                          } else {
-                              sounds = [];
+                              let sound_component = this._soundCheckForCheckerOffBoard(this.state.checkerArray[k].nextPosition, max_board_index);
+                              sounds.push(sound_component);
                           }
 
                           new_checkers_present.push(this.state.checkerArray[k]);
